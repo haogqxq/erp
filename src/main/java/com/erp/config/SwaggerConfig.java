@@ -16,9 +16,9 @@ public class SwaggerConfig extends BaseSwaggerConfig {
     @Override
     public SwaggerProperties swaggerProperties() {
         return SwaggerProperties.builder()
-                .apiBasePackage("com.macro.mall.controller")
-                .title("mall后台系统")
-                .description("mall后台相关接口文档")
+                .apiBasePackage("com.erp.controller")
+                .title("erp后台系统")
+                .description("erp后台相关接口文档")
                 .contactName("macro")
                 .version("1.0")
                 .enableSecurity(true)

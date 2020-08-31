@@ -2,17 +2,23 @@ package com.erp.controller;
 
 import com.erp.common.api.CommonPage;
 import com.erp.common.api.CommonResult;
+import com.erp.dto.UserLoginParam;
+import com.erp.dto.UserParam;
 import com.erp.mbg.model.User;
 import com.erp.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：haoguoqiang
@@ -27,67 +33,34 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @RequestMapping(value = "listAll", method = RequestMethod.GET)
-    @ResponseBody
-    @ApiOperation("获取所有用户列表")
-    public CommonResult<List<User>> getUserList() {
-        return CommonResult.success(userService.listAllUser());
-    }
+    @Value("${jwt.tokenHeader}")
+    private String tokenHeader;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ApiOperation(value = "用户注册")
+    @PostMapping(value = "/register")
     @ResponseBody
-    public CommonResult createUser(@RequestBody User User) {
-        CommonResult commonResult;
-        int count = userService.createUser(User);
-        if (count == 1) {
-            commonResult = CommonResult.success(User);
-            log.debug("createUser success:{}", User);
-        } else {
-            commonResult = CommonResult.failed("操作失败");
-            log.debug("createUser failed:{}", User);
+    public CommonResult<User> register(@Validated @RequestBody UserParam userParam){
+        log.info("register");
+        User user = userService.register(userParam);
+        if (user==null){
+            return CommonResult.failed();
         }
-        return commonResult;
+        return CommonResult.success(user);
     }
-
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @ApiOperation(value = "用户登录")
+    @PostMapping(value = "/login")
     @ResponseBody
-    public CommonResult updateUser(@PathVariable("id") Long id, @RequestBody User UserDto, BindingResult result) {
-        CommonResult commonResult;
-        int count = userService.updateUser(id, UserDto);
-        if (count == 1) {
-            commonResult = CommonResult.success(UserDto);
-            log.debug("updateUser success:{}", UserDto);
-        } else {
-            commonResult = CommonResult.failed("操作失败");
-            log.debug("updateUser failed:{}", UserDto);
+    public CommonResult login(@Validated @RequestBody UserLoginParam userLoginParam){
+        log.info("login");
+        String token = userService.login(userLoginParam.getUsername(), userLoginParam.getPassword());
+        if (token==null){
+            return CommonResult.failed("用户名或者密码错误");
         }
-        return commonResult;
-    }
-
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult deleteUser(@PathVariable("id") Long id) {
-        int count = userService.deleteUser(id);
-        if (count == 1) {
-            log.debug("deleteUser success :id={}", id);
-            return CommonResult.success(null);
-        } else {
-            log.debug("deleteUser failed :id={}", id);
-            return CommonResult.failed("操作失败");
-        }
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<CommonPage<User>> listUser(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                    @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
-        List<User> UserList = userService.listUser(pageNum, pageSize);
-        return CommonResult.success(CommonPage.restPage(UserList));
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<User> User(@PathVariable("id") Long id) {
-        return CommonResult.success(userService.getUser(id));
+        Map<String,String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+        tokenMap.put("tokenHead", tokenHead);
+        return CommonResult.success(tokenMap);
     }
 }

@@ -1,19 +1,44 @@
 package com.erp.service;
 
+import com.erp.dto.UserParam;
+import com.erp.mbg.model.Resource;
 import com.erp.mbg.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> listAllUser();
+    /**
+     * 根据用户名获取后台管理员
+     */
+    User getUserByUsername(String username);
+    /**
+     * 注册功能
+     * @param userParam
+     * @return
+     */
+    User register(UserParam userParam);
 
-    int createUser(User User);
+    /**
+     * 登录功能
+     * @param username
+     * @param password
+     * @return
+     */
+    String login(String username,String password);
 
-    int updateUser(Long id, User User);
-
-    int deleteUser(Long id);
-
-    List<User> listUser(int pageNum, int pageSize);
-
-    User getUser(Long id);
+    /**
+     * 获取用户信息
+     * @param username
+     * @return
+     */
+    UserDetails loadUserByUsername(String username);
+    /**
+     * 获取指定用户的可访问资源
+     */
+    List<Resource> getResourceList(Long adminId);
+    /**
+     * 根据用户id获取用户
+     */
+    User getItem(Long id);
 }

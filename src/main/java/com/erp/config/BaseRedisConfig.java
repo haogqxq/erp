@@ -1,11 +1,11 @@
 package com.erp.config;
 
+import com.erp.common.service.RedisService;
+import com.erp.common.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import com.erp.service.RedisService;
-import com.erp.service.impl.RedisServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;

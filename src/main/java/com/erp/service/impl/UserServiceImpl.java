@@ -1,13 +1,28 @@
 package com.erp.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
+import com.erp.bo.UserDetail;
+import com.erp.common.exception.Asserts;
+import com.erp.dao.UserRoleRelationDao;
+import com.erp.dto.UserParam;
 import com.erp.mbg.mapper.UserMapper;
+import com.erp.mbg.model.Resource;
 import com.erp.mbg.model.User;
 import com.erp.mbg.model.UserExample;
+import com.erp.mbg.model.UserRoleRelation;
+import com.erp.security.util.JwtTokenUtil;
+import com.erp.service.UserCacheService;
 import com.erp.service.UserService;
-import com.github.pagehelper.PageHelper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,34 +35,90 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRoleRelationDao userRoleRelationDao;
+    @Autowired
+    private UserCacheService userCacheService;
+
     @Override
-    public List<User> listAllUser() {
-        return userMapper.selectByExample(new UserExample());
+    public User getUserByUsername(String username) {
+        User user = userCacheService.getUser(username);
+        if (user!=null) return  user;
+        UserExample userExample= new UserExample();
+        userExample.createCriteria().andUsernameEqualTo(username);
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users!=null && users.size()>0){
+            user = users.get(0);
+            userCacheService.setUser(user);
+            return user;
+        }
+        return null;
     }
 
     @Override
-    public int createUser(User User) {
-        return userMapper.insert(User);
+    public User register(UserParam userParam) {
+        User user = new User();
+        BeanUtils.copyProperties(userParam, user);
+        user.setCreateTime(new Date());
+        user.setStatus(1);
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUsernameEqualTo(user.getUsername());
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.size()>0){
+            return null;
+        }
+        String encodePassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodePassword);
+        userMapper.insert(user);
+        return user;
     }
 
     @Override
-    public int updateUser(Long id, User User) {
-        return userMapper.updateByPrimaryKeySelective(User);
+    public String login(String username, String password) {
+        String token=null;
+        UserDetails userDetails = loadUserByUsername(username);
+        if (!passwordEncoder.matches(password, userDetails.getPassword())){
+            Asserts.fail("密码不正确");
+        }
+        if (!userDetails.isEnabled()){
+            Asserts.fail("用户已被禁用");
+        }
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(userDetails, null,userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        token = jwtTokenUtil.generateToken(userDetails);
+        return token;
     }
 
     @Override
-    public int deleteUser(Long id) {
-        return userMapper.deleteByPrimaryKey(id);
+    public UserDetails loadUserByUsername(String username) {
+        User user = getUserByUsername(username);
+        if (user!=null){
+            List<Resource> resources = getResourceList(user.getId());
+            return new UserDetail(user, resources);
+        }
+        throw new UsernameNotFoundException("用户名或者密码错误");
     }
 
     @Override
-    public List<User> listUser(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return userMapper.selectByExample(new UserExample());
+    public List<Resource> getResourceList(Long userId) {
+        List<Resource> resources = userCacheService.getResourceList(userId);
+        if (CollUtil.isNotEmpty(resources)){
+            return resources;
+        }
+        resources = userRoleRelationDao.getResourceList(userId);
+        if (CollUtil.isNotEmpty(resources)){
+            userCacheService.setResourceList(userId, resources);
+        }
+        return resources;
     }
 
     @Override
-    public User getUser(Long id) {
+    public User getItem(Long id) {
         return userMapper.selectByPrimaryKey(id);
     }
 }
