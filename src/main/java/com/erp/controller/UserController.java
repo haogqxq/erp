@@ -40,10 +40,10 @@ public class UserController {
     @PostMapping(value = "/register")
     @ResponseBody
     public CommonResult<User> register(@Validated @RequestBody UserParam userParam){
-        log.info("register");
+
         User user = userService.register(userParam);
         if (user==null){
-            return CommonResult.failed();
+            return CommonResult.failed("用户注册失败");
         }
         return CommonResult.success(user);
     }
@@ -51,7 +51,6 @@ public class UserController {
     @PostMapping(value = "/login")
     @ResponseBody
     public CommonResult login(@Validated @RequestBody UserLoginParam userLoginParam){
-        log.info("login");
         String token = userService.login(userLoginParam.getUsername(), userLoginParam.getPassword());
         if (token==null){
             return CommonResult.failed("用户名或者密码错误");
@@ -62,12 +61,13 @@ public class UserController {
         return CommonResult.success(tokenMap);
     }
     @ApiOperation(value = "获取当前登录用户信息")
-    @RequestMapping(value = "/info")
+    @GetMapping(value = "/info")
     @ResponseBody
     public CommonResult getUserInfo(Principal principal){
         if (principal==null) return CommonResult.unauthorized(null);
         String username = principal.getName();
         User user = userService.getUserByUsername(username);
+        if (user==null) return CommonResult.failed("没有该用户的信息");
         Map<String,Object> userInfo = new HashMap<>();
         userInfo.put("username", username);
         userInfo.put("icon", user.getIcon());
@@ -80,6 +80,6 @@ public class UserController {
     public CommonResult update(@PathVariable Long id,@RequestBody User user){
         int count = userService.update(id, user);
         if (count>0) return CommonResult.success(count);
-        return CommonResult.failed();
+        return CommonResult.failed("用户信息更新失败");
     }
 }

@@ -3,6 +3,7 @@ package com.erp.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@Validated
 public class UserLoginParam {
     @ApiModelProperty(value = "用户名", required = true)
     @NotEmpty(message = "用户名不能为空")

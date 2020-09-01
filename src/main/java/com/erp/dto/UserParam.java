@@ -3,12 +3,14 @@ package com.erp.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
+@Validated
 public class UserParam {
     @ApiModelProperty(value = "用户名", required = true)
     @NotEmpty(message = "用户名不能为空")

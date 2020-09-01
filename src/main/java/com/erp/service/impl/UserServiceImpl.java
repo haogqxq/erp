@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
         ServletRequestAttributes Attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Attributes.getRequest();
         userLoginLog.setIp(request.getRemoteAddr());
-
+        userLoginLog.setUserAgent(request.getHeader("User-Agent"));
         userLoginLogMapper.insert(userLoginLog);
 
     }
