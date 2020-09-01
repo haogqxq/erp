@@ -15,7 +15,7 @@ mybatis:
 redis:
   database: rep
   key:
-    admin: 'ums:admin'
+    user: 'user'
     resourceList: 'ums:resourceList'
   expire:
     common: 86400 # 24小时

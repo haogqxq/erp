@@ -37,8 +37,8 @@ public class UserCacheServiceImpl implements UserCacheService {
     private String REDIS_DATABASE;
     @Value("${redis.expire.common}")
     private Long REDIS_EXPIRE;
-    @Value("${redis.key.admin}")
-    private String REDIS_KEY_ADMIN;
+    @Value("${redis.key.user}")
+    private String REDIS_KEY_USER;
     @Value("${redis.key.resourceList}")
     private String REDIS_KEY_RESOURCE_LIST;
 
@@ -46,7 +46,7 @@ public class UserCacheServiceImpl implements UserCacheService {
     public void delUser(Long userId) {
         User user = userService.getItem(userId);
         if (user != null) {
-            String key = REDIS_DATABASE + ":" + REDIS_KEY_ADMIN + ":" + user.getUsername();
+            String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + user.getUsername();
             redisService.del(key);
         }
     }
@@ -93,13 +93,13 @@ public class UserCacheServiceImpl implements UserCacheService {
 
     @Override
     public User getUser(String username) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_ADMIN + ":" + username;
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + username;
         return (User) redisService.get(key);
     }
 
     @Override
     public void setUser(User user) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_ADMIN + ":" + user.getUsername();
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + user.getUsername();
         redisService.set(key, user, REDIS_EXPIRE);
     }
 

@@ -1,6 +1,5 @@
 package com.erp.controller;
 
-import com.erp.common.api.CommonPage;
 import com.erp.common.api.CommonResult;
 import com.erp.dto.UserLoginParam;
 import com.erp.dto.UserParam;
@@ -12,12 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,5 +60,26 @@ public class UserController {
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         return CommonResult.success(tokenMap);
+    }
+    @ApiOperation(value = "获取当前登录用户信息")
+    @RequestMapping(value = "/info")
+    @ResponseBody
+    public CommonResult getUserInfo(Principal principal){
+        if (principal==null) return CommonResult.unauthorized(null);
+        String username = principal.getName();
+        User user = userService.getUserByUsername(username);
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("username", username);
+        userInfo.put("icon", user.getIcon());
+        userInfo.put("Email", user.getEmail());
+        return CommonResult.success(userInfo);
+    }
+    @ApiOperation(value = "修改指定用户信息")
+    @PostMapping(value = "/update/{id}")
+    @ResponseBody
+    public CommonResult update(@PathVariable Long id,@RequestBody User user){
+        int count = userService.update(id, user);
+        if (count>0) return CommonResult.success(count);
+        return CommonResult.failed();
     }
 }

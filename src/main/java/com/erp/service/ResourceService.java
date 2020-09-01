@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * 后台资源管理Service
- * Created by macro on 2020/2/2.
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/8/30 20:12
  */
 public interface ResourceService {
     /**

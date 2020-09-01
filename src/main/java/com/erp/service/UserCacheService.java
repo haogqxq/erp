@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * 后台用户缓存操作类
- * Created by macro on 2020/3/13.
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/8/30 20:12
  */
 public interface UserCacheService {
     /**

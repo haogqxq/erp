@@ -7,6 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
+/**
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/8/30 20:12
+ */
 public interface UserService {
     /**
      * 根据用户名获取后台管理员
@@ -41,4 +45,16 @@ public interface UserService {
      * 根据用户id获取用户
      */
     User getItem(Long id);
+
+    /**
+     * 更新用户信息
+     */
+    int update(Long id,User user);
+
+    /**
+     * 更新用户信息
+     * @param username
+     * @return
+     */
+    int updateLoginTimeByUsername(String username);
 }
