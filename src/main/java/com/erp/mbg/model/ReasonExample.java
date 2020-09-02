@@ -165,62 +165,72 @@ public class ReasonExample {
         }
 
         public Criteria andReasonidIsNull() {
-            addCriterion("reasonid is null");
+            addCriterion("reasonId is null");
             return (Criteria) this;
         }
 
         public Criteria andReasonidIsNotNull() {
-            addCriterion("reasonid is not null");
+            addCriterion("reasonId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidEqualTo(Integer value) {
-            addCriterion("reasonid =", value, "reasonid");
+        public Criteria andReasonidEqualTo(String value) {
+            addCriterion("reasonId =", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidNotEqualTo(Integer value) {
-            addCriterion("reasonid <>", value, "reasonid");
+        public Criteria andReasonidNotEqualTo(String value) {
+            addCriterion("reasonId <>", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidGreaterThan(Integer value) {
-            addCriterion("reasonid >", value, "reasonid");
+        public Criteria andReasonidGreaterThan(String value) {
+            addCriterion("reasonId >", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("reasonid >=", value, "reasonid");
+        public Criteria andReasonidGreaterThanOrEqualTo(String value) {
+            addCriterion("reasonId >=", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidLessThan(Integer value) {
-            addCriterion("reasonid <", value, "reasonid");
+        public Criteria andReasonidLessThan(String value) {
+            addCriterion("reasonId <", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidLessThanOrEqualTo(Integer value) {
-            addCriterion("reasonid <=", value, "reasonid");
+        public Criteria andReasonidLessThanOrEqualTo(String value) {
+            addCriterion("reasonId <=", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidIn(List<Integer> values) {
-            addCriterion("reasonid in", values, "reasonid");
+        public Criteria andReasonidLike(String value) {
+            addCriterion("reasonId like", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidNotIn(List<Integer> values) {
-            addCriterion("reasonid not in", values, "reasonid");
+        public Criteria andReasonidNotLike(String value) {
+            addCriterion("reasonId not like", value, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidBetween(Integer value1, Integer value2) {
-            addCriterion("reasonid between", value1, value2, "reasonid");
+        public Criteria andReasonidIn(List<String> values) {
+            addCriterion("reasonId in", values, "reasonid");
             return (Criteria) this;
         }
 
-        public Criteria andReasonidNotBetween(Integer value1, Integer value2) {
-            addCriterion("reasonid not between", value1, value2, "reasonid");
+        public Criteria andReasonidNotIn(List<String> values) {
+            addCriterion("reasonId not in", values, "reasonid");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonidBetween(String value1, String value2) {
+            addCriterion("reasonId between", value1, value2, "reasonid");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonidNotBetween(String value1, String value2) {
+            addCriterion("reasonId not between", value1, value2, "reasonid");
             return (Criteria) this;
         }
 

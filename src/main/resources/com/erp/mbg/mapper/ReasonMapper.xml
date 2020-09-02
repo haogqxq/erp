@@ -3,7 +3,7 @@
 <mapper namespace="com.erp.mbg.mapper.ReasonMapper">
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Reason">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="reasonid" jdbcType="INTEGER" property="reasonid" />
+    <result column="reasonId" jdbcType="VARCHAR" property="reasonid" />
     <result column="reason" jdbcType="VARCHAR" property="reason" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, reasonid, reason
+    id, reasonId, reason
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.ReasonExample" resultMap="BaseResultMap">
     select
@@ -101,8 +101,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into reason (reasonid, reason)
-    values (#{reasonid,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR})
+    insert into reason (reasonId, reason)
+    values (#{reasonid,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.erp.mbg.model.Reason">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -111,7 +111,7 @@
     insert into reason
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="reasonid != null">
-        reasonid,
+        reasonId,
       </if>
       <if test="reason != null">
         reason,
@@ -119,7 +119,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="reasonid != null">
-        #{reasonid,jdbcType=INTEGER},
+        #{reasonid,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         #{reason,jdbcType=VARCHAR},
@@ -139,7 +139,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.reasonid != null">
-        reasonid = #{record.reasonid,jdbcType=INTEGER},
+        reasonId = #{record.reasonid,jdbcType=VARCHAR},
       </if>
       <if test="record.reason != null">
         reason = #{record.reason,jdbcType=VARCHAR},
@@ -152,7 +152,7 @@
   <update id="updateByExample" parameterType="map">
     update reason
     set id = #{record.id,jdbcType=BIGINT},
-      reasonid = #{record.reasonid,jdbcType=INTEGER},
+      reasonId = #{record.reasonid,jdbcType=VARCHAR},
       reason = #{record.reason,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -162,7 +162,7 @@
     update reason
     <set>
       <if test="reasonid != null">
-        reasonid = #{reasonid,jdbcType=INTEGER},
+        reasonId = #{reasonid,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         reason = #{reason,jdbcType=VARCHAR},
@@ -172,7 +172,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Reason">
     update reason
-    set reasonid = #{reasonid,jdbcType=INTEGER},
+    set reasonId = #{reasonid,jdbcType=VARCHAR},
       reason = #{reason,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

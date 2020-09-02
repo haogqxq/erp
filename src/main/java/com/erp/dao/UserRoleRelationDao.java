@@ -9,9 +9,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 自定义后台用户与角色管理Dao
  * @author ：haoguoqiang
- * @date ：Created in 2020/8/30 20:12
+ * @date ：Created in 2020/8/28 20:26
+ * @description：用户角色关系
  */
 public interface UserRoleRelationDao{
     /**

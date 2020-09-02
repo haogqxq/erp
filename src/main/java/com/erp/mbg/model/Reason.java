@@ -8,7 +8,7 @@ public class Reason implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "请假事由编号")
-    private Integer reasonid;
+    private String reasonid;
 
     @ApiModelProperty(value = "请假事由：1事假，2婚假，3产假，4陪产假，5年假，6丧假，7病假")
     private String reason;
@@ -23,11 +23,11 @@ public class Reason implements Serializable {
         this.id = id;
     }
 
-    public Integer getReasonid() {
+    public String getReasonid() {
         return reasonid;
     }
 
-    public void setReasonid(Integer reasonid) {
+    public void setReasonid(String reasonid) {
         this.reasonid = reasonid;
     }
 

@@ -34,8 +34,7 @@ import java.util.jar.Attributes;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/8/28 20:50
- * @description：
- * @modified By：
+ * @description：用户Service实现类
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -51,22 +50,6 @@ public class UserServiceImpl implements UserService {
     private UserCacheService userCacheService;
     @Autowired
     private UserLoginLogMapper userLoginLogMapper;
-
-    @Override
-    public User getUserByUsername(String username) {
-        User user = userCacheService.getUser(username);
-        if (user!=null) return  user;
-        UserExample userExample= new UserExample();
-
-        userExample.createCriteria().andUsernameEqualTo(username);
-        List<User> users = userMapper.selectByExample(userExample);
-        if (users!=null && users.size()>0){
-            user = users.get(0);
-            userCacheService.setUser(user);
-            return user;
-        }
-        return null;
-    }
 
     @Override
     public User register(UserParam userParam) {
@@ -117,6 +100,7 @@ public class UserServiceImpl implements UserService {
         userLoginLogMapper.insert(userLoginLog);
 
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = getUserByUsername(username);
@@ -126,7 +110,21 @@ public class UserServiceImpl implements UserService {
         }
         throw new UsernameNotFoundException("用户名或者密码错误");
     }
+    @Override
+    public User getUserByUsername(String username) {
+        User user = userCacheService.getUser(username);
+        if (user!=null) return  user;
+        UserExample userExample= new UserExample();
 
+        userExample.createCriteria().andUsernameEqualTo(username);
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users!=null && users.size()>0){
+            user = users.get(0);
+            userCacheService.setUser(user);
+            return user;
+        }
+        return null;
+    }
     @Override
     public List<Resource> getResourceList(Long userId) {
         List<Resource> resources = userCacheService.getResourceList(userId);

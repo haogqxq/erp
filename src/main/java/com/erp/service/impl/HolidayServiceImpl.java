@@ -1,5 +1,6 @@
 package com.erp.service.impl;
 
+import com.erp.dto.HolidayUpdateParam;
 import com.erp.mbg.mapper.HolidayMapper;
 import com.erp.mbg.model.Holiday;
 import com.erp.mbg.model.HolidayExample;
@@ -13,8 +14,7 @@ import java.util.List;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/9/1 15:56
- * @description：
- * @modified By：
+ * @description：节假日Service实现类
  */
 @Service
 public class HolidayServiceImpl implements HolidayService {
@@ -49,14 +49,20 @@ public class HolidayServiceImpl implements HolidayService {
     }
 
     @Override
-    public int updateHolidayByDate(Holiday record) {
-        int count = holidayMapper.updateByExample(record,getHolidayExample(record.getHoliday()));
+    public int updateHolidayByDate(HolidayUpdateParam record) {
+        Holiday holiday = new Holiday();
+        holiday.setHoliday(record.getHoliday());
+        holiday.setName(record.getName());
+        int count = holidayMapper.updateByExample(holiday,getHolidayExample(record.getHoliday()));
         return count;
     }
 
     @Override
-    public int insertHoliday(Holiday record) {
-        int count = holidayMapper.insert(record);
+    public int insertHoliday(HolidayUpdateParam record) {
+        Holiday holiday = new Holiday();
+        holiday.setHoliday(record.getHoliday());
+        holiday.setName(record.getName());
+        int count = holidayMapper.insert(holiday);
         return count;
     }
 

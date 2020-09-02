@@ -24,9 +24,12 @@ public class UserDetail implements org.springframework.security.core.userdetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //返回当前用户的角色
-        return resourceList.stream()
-                .map(role ->new SimpleGrantedAuthority(role.getId()+":"+role.getName()))
-                .collect(Collectors.toList());
+        if(resourceList!=null) {
+            return resourceList.stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getId() + ":" + role.getName()))
+                    .collect(Collectors.toList());
+        }
+        return null;
     }
 
     @Override

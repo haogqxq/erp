@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 自定义返回结果：没有权限访问时
- * Created by macro on 2018/4/26.
+ /**
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/9/3 10:44
+ * @description：自定义返回结果：没有权限访问时
  */
 public class RestfulAccessDeniedHandler implements AccessDeniedHandler{
     @Override

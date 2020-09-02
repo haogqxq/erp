@@ -52,7 +52,7 @@
             pr.type = 1
             AND pr.user_id = #{userId}
     </select>
-    <select id="getResourceList" resultType="com.erp.mbg.model.Resource.BaseResultMap">
+    <select id="getResourceList" resultType="com.erp.mbg.model.Resource">
         SELECT
             ur.id id,
             ur.create_time createTime,

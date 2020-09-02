@@ -7,16 +7,16 @@ import java.util.Date;
 public class Leave implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "工号")
-    private Integer uUsername;
+    @ApiModelProperty(value = "用户名")
+    private String uUsername;
 
     @ApiModelProperty(value = "请假事由")
-    private Integer reason;
+    private String reason;
 
     @ApiModelProperty(value = "请假备考")
     private String info;
 
-    @ApiModelProperty(value = "外出日期")
+    @ApiModelProperty(value = "请假日期")
     private Date leavedate;
 
     @ApiModelProperty(value = "外出开始时间")
@@ -26,7 +26,7 @@ public class Leave implements Serializable {
     private Date endtime;
 
     @ApiModelProperty(value = "审批状态")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "申请时间")
     private Date createat;
@@ -44,19 +44,19 @@ public class Leave implements Serializable {
         this.id = id;
     }
 
-    public Integer getuUsername() {
+    public String getuUsername() {
         return uUsername;
     }
 
-    public void setuUsername(Integer uUsername) {
+    public void setuUsername(String uUsername) {
         this.uUsername = uUsername;
     }
 
-    public Integer getReason() {
+    public String getReason() {
         return reason;
     }
 
-    public void setReason(Integer reason) {
+    public void setReason(String reason) {
         this.reason = reason;
     }
 
@@ -92,11 +92,11 @@ public class Leave implements Serializable {
         this.endtime = endtime;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

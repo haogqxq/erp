@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Outwork">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
-    <result column="outworkdate" jdbcType="DATE" property="outworkdate" />
-    <result column="starttime" jdbcType="TIME" property="starttime" />
-    <result column="endtime" jdbcType="TIME" property="endtime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="outWorkDate" jdbcType="DATE" property="outworkdate" />
+    <result column="startTime" jdbcType="TIME" property="starttime" />
+    <result column="endTime" jdbcType="TIME" property="endtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
     <result column="modifiedAt" jdbcType="TIMESTAMP" property="modifiedat" />
   </resultMap>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_username, outworkdate, starttime, endtime, status, createAt, modifiedAt
+    id, u_username, outWorkDate, startTime, endTime, status, createAt, modifiedAt
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.OutworkExample" resultMap="BaseResultMap">
     select
@@ -106,11 +106,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into outwork (u_username, outworkdate, starttime, 
-      endtime, status, createAt, 
+    insert into outwork (u_username, outWorkDate, startTime, 
+      endTime, status, createAt, 
       modifiedAt)
     values (#{uUsername,jdbcType=VARCHAR}, #{outworkdate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
-      #{endtime,jdbcType=TIME}, #{status,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIME}, #{status,jdbcType=VARCHAR}, #{createat,jdbcType=TIMESTAMP}, 
       #{modifiedat,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.erp.mbg.model.Outwork">
@@ -123,13 +123,13 @@
         u_username,
       </if>
       <if test="outworkdate != null">
-        outworkdate,
+        outWorkDate,
       </if>
       <if test="starttime != null">
-        starttime,
+        startTime,
       </if>
       <if test="endtime != null">
-        endtime,
+        endTime,
       </if>
       <if test="status != null">
         status,
@@ -155,7 +155,7 @@
         #{endtime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createat != null">
         #{createat,jdbcType=TIMESTAMP},
@@ -181,16 +181,16 @@
         u_username = #{record.uUsername,jdbcType=VARCHAR},
       </if>
       <if test="record.outworkdate != null">
-        outworkdate = #{record.outworkdate,jdbcType=DATE},
+        outWorkDate = #{record.outworkdate,jdbcType=DATE},
       </if>
       <if test="record.starttime != null">
-        starttime = #{record.starttime,jdbcType=TIME},
+        startTime = #{record.starttime,jdbcType=TIME},
       </if>
       <if test="record.endtime != null">
-        endtime = #{record.endtime,jdbcType=TIME},
+        endTime = #{record.endtime,jdbcType=TIME},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        status = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.createat != null">
         createAt = #{record.createat,jdbcType=TIMESTAMP},
@@ -207,10 +207,10 @@
     update outwork
     set id = #{record.id,jdbcType=BIGINT},
       u_username = #{record.uUsername,jdbcType=VARCHAR},
-      outworkdate = #{record.outworkdate,jdbcType=DATE},
-      starttime = #{record.starttime,jdbcType=TIME},
-      endtime = #{record.endtime,jdbcType=TIME},
-      status = #{record.status,jdbcType=INTEGER},
+      outWorkDate = #{record.outworkdate,jdbcType=DATE},
+      startTime = #{record.starttime,jdbcType=TIME},
+      endTime = #{record.endtime,jdbcType=TIME},
+      status = #{record.status,jdbcType=VARCHAR},
       createAt = #{record.createat,jdbcType=TIMESTAMP},
       modifiedAt = #{record.modifiedat,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -224,16 +224,16 @@
         u_username = #{uUsername,jdbcType=VARCHAR},
       </if>
       <if test="outworkdate != null">
-        outworkdate = #{outworkdate,jdbcType=DATE},
+        outWorkDate = #{outworkdate,jdbcType=DATE},
       </if>
       <if test="starttime != null">
-        starttime = #{starttime,jdbcType=TIME},
+        startTime = #{starttime,jdbcType=TIME},
       </if>
       <if test="endtime != null">
-        endtime = #{endtime,jdbcType=TIME},
+        endTime = #{endtime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createat != null">
         createAt = #{createat,jdbcType=TIMESTAMP},
@@ -247,10 +247,10 @@
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Outwork">
     update outwork
     set u_username = #{uUsername,jdbcType=VARCHAR},
-      outworkdate = #{outworkdate,jdbcType=DATE},
-      starttime = #{starttime,jdbcType=TIME},
-      endtime = #{endtime,jdbcType=TIME},
-      status = #{status,jdbcType=INTEGER},
+      outWorkDate = #{outworkdate,jdbcType=DATE},
+      startTime = #{starttime,jdbcType=TIME},
+      endTime = #{endtime,jdbcType=TIME},
+      status = #{status,jdbcType=VARCHAR},
       createAt = #{createat,jdbcType=TIMESTAMP},
       modifiedAt = #{modifiedat,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

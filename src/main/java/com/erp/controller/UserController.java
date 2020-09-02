@@ -1,6 +1,7 @@
 package com.erp.controller;
 
 import com.erp.common.api.CommonResult;
+import com.erp.common.exception.ParamException;
 import com.erp.dto.UserLoginParam;
 import com.erp.dto.UserParam;
 import com.erp.mbg.model.User;
@@ -11,9 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +41,10 @@ public class UserController {
     @ApiOperation(value = "用户注册")
     @PostMapping(value = "/register")
     @ResponseBody
-    public CommonResult<User> register(@Validated @RequestBody UserParam userParam){
-
+    public CommonResult<User> register(@Valid @RequestBody UserParam userParam, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
         User user = userService.register(userParam);
         if (user==null){
             return CommonResult.failed("用户注册失败");
@@ -50,7 +54,10 @@ public class UserController {
     @ApiOperation(value = "用户登录")
     @PostMapping(value = "/login")
     @ResponseBody
-    public CommonResult login(@Validated @RequestBody UserLoginParam userLoginParam){
+    public CommonResult login(@Valid @RequestBody UserLoginParam userLoginParam, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
         String token = userService.login(userLoginParam.getUsername(), userLoginParam.getPassword());
         if (token==null){
             return CommonResult.failed("用户名或者密码错误");
@@ -77,7 +84,10 @@ public class UserController {
     @ApiOperation(value = "修改指定用户信息")
     @PostMapping(value = "/update/{id}")
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,@RequestBody User user){
+    public CommonResult update(@PathVariable Long id,@Valid @RequestBody User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
         int count = userService.update(id, user);
         if (count>0) return CommonResult.success(count);
         return CommonResult.failed("用户信息更新失败");

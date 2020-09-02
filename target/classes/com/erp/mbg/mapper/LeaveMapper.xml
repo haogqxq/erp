@@ -3,13 +3,13 @@
 <mapper namespace="com.erp.mbg.mapper.LeaveMapper">
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Leave">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="u_username" jdbcType="INTEGER" property="uUsername" />
-    <result column="reason" jdbcType="INTEGER" property="reason" />
+    <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="leavedate" jdbcType="DATE" property="leavedate" />
-    <result column="starttime" jdbcType="TIME" property="starttime" />
-    <result column="endtime" jdbcType="TIME" property="endtime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="leaveDate" jdbcType="DATE" property="leavedate" />
+    <result column="startTime" jdbcType="TIME" property="starttime" />
+    <result column="endTime" jdbcType="TIME" property="endtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
     <result column="modifiedAt" jdbcType="TIMESTAMP" property="modifiedat" />
   </resultMap>
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_username, reason, info, leavedate, starttime, endtime, status, createAt, modifiedAt
+    id, u_username, reason, info, leaveDate, startTime, endTime, status, createAt, modifiedAt
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.LeaveExample" resultMap="BaseResultMap">
     select
@@ -109,12 +109,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into leave (u_username, reason, info, 
-      leavedate, starttime, endtime, 
+      leaveDate, startTime, endTime, 
       status, createAt, modifiedAt
       )
-    values (#{uUsername,jdbcType=INTEGER}, #{reason,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, 
+    values (#{uUsername,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
       #{leavedate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, #{endtime,jdbcType=TIME}, 
-      #{status,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, #{modifiedat,jdbcType=TIMESTAMP}
+      #{status,jdbcType=VARCHAR}, #{createat,jdbcType=TIMESTAMP}, #{modifiedat,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.erp.mbg.model.Leave">
@@ -133,13 +133,13 @@
         info,
       </if>
       <if test="leavedate != null">
-        leavedate,
+        leaveDate,
       </if>
       <if test="starttime != null">
-        starttime,
+        startTime,
       </if>
       <if test="endtime != null">
-        endtime,
+        endTime,
       </if>
       <if test="status != null">
         status,
@@ -153,10 +153,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uUsername != null">
-        #{uUsername,jdbcType=INTEGER},
+        #{uUsername,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
-        #{reason,jdbcType=INTEGER},
+        #{reason,jdbcType=VARCHAR},
       </if>
       <if test="info != null">
         #{info,jdbcType=VARCHAR},
@@ -171,7 +171,7 @@
         #{endtime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createat != null">
         #{createat,jdbcType=TIMESTAMP},
@@ -194,25 +194,25 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.uUsername != null">
-        u_username = #{record.uUsername,jdbcType=INTEGER},
+        u_username = #{record.uUsername,jdbcType=VARCHAR},
       </if>
       <if test="record.reason != null">
-        reason = #{record.reason,jdbcType=INTEGER},
+        reason = #{record.reason,jdbcType=VARCHAR},
       </if>
       <if test="record.info != null">
         info = #{record.info,jdbcType=VARCHAR},
       </if>
       <if test="record.leavedate != null">
-        leavedate = #{record.leavedate,jdbcType=DATE},
+        leaveDate = #{record.leavedate,jdbcType=DATE},
       </if>
       <if test="record.starttime != null">
-        starttime = #{record.starttime,jdbcType=TIME},
+        startTime = #{record.starttime,jdbcType=TIME},
       </if>
       <if test="record.endtime != null">
-        endtime = #{record.endtime,jdbcType=TIME},
+        endTime = #{record.endtime,jdbcType=TIME},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
+        status = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.createat != null">
         createAt = #{record.createat,jdbcType=TIMESTAMP},
@@ -228,13 +228,13 @@
   <update id="updateByExample" parameterType="map">
     update leave
     set id = #{record.id,jdbcType=BIGINT},
-      u_username = #{record.uUsername,jdbcType=INTEGER},
-      reason = #{record.reason,jdbcType=INTEGER},
+      u_username = #{record.uUsername,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
       info = #{record.info,jdbcType=VARCHAR},
-      leavedate = #{record.leavedate,jdbcType=DATE},
-      starttime = #{record.starttime,jdbcType=TIME},
-      endtime = #{record.endtime,jdbcType=TIME},
-      status = #{record.status,jdbcType=INTEGER},
+      leaveDate = #{record.leavedate,jdbcType=DATE},
+      startTime = #{record.starttime,jdbcType=TIME},
+      endTime = #{record.endtime,jdbcType=TIME},
+      status = #{record.status,jdbcType=VARCHAR},
       createAt = #{record.createat,jdbcType=TIMESTAMP},
       modifiedAt = #{record.modifiedat,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -245,25 +245,25 @@
     update leave
     <set>
       <if test="uUsername != null">
-        u_username = #{uUsername,jdbcType=INTEGER},
+        u_username = #{uUsername,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
-        reason = #{reason,jdbcType=INTEGER},
+        reason = #{reason,jdbcType=VARCHAR},
       </if>
       <if test="info != null">
         info = #{info,jdbcType=VARCHAR},
       </if>
       <if test="leavedate != null">
-        leavedate = #{leavedate,jdbcType=DATE},
+        leaveDate = #{leavedate,jdbcType=DATE},
       </if>
       <if test="starttime != null">
-        starttime = #{starttime,jdbcType=TIME},
+        startTime = #{starttime,jdbcType=TIME},
       </if>
       <if test="endtime != null">
-        endtime = #{endtime,jdbcType=TIME},
+        endTime = #{endtime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
+        status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createat != null">
         createAt = #{createat,jdbcType=TIMESTAMP},
@@ -276,13 +276,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Leave">
     update leave
-    set u_username = #{uUsername,jdbcType=INTEGER},
-      reason = #{reason,jdbcType=INTEGER},
+    set u_username = #{uUsername,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
       info = #{info,jdbcType=VARCHAR},
-      leavedate = #{leavedate,jdbcType=DATE},
-      starttime = #{starttime,jdbcType=TIME},
-      endtime = #{endtime,jdbcType=TIME},
-      status = #{status,jdbcType=INTEGER},
+      leaveDate = #{leavedate,jdbcType=DATE},
+      startTime = #{starttime,jdbcType=TIME},
+      endTime = #{endtime,jdbcType=TIME},
+      status = #{status,jdbcType=VARCHAR},
       createAt = #{createat,jdbcType=TIMESTAMP},
       modifiedAt = #{modifiedat,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Overtime">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
-    <result column="overtimedate" jdbcType="DATE" property="overtimedate" />
-    <result column="starttime" jdbcType="TIME" property="starttime" />
-    <result column="endtime" jdbcType="TIME" property="endtime" />
+    <result column="overTimeTate" jdbcType="DATE" property="overtimetate" />
+    <result column="startTime" jdbcType="TIME" property="starttime" />
+    <result column="endTime" jdbcType="TIME" property="endtime" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
     <result column="modifiedAt" jdbcType="TIMESTAMP" property="modifiedat" />
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_username, overtimedate, starttime, endtime, status, createAt, modifiedAt
+    id, u_username, overTimeTate, startTime, endTime, status, createAt, modifiedAt
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.OvertimeExample" resultMap="BaseResultMap">
     select
@@ -106,10 +106,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into overtime (u_username, overtimedate, starttime, 
-      endtime, status, createAt, 
+    insert into overtime (u_username, overTimeTate, startTime, 
+      endTime, status, createAt, 
       modifiedAt)
-    values (#{uUsername,jdbcType=VARCHAR}, #{overtimedate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
+    values (#{uUsername,jdbcType=VARCHAR}, #{overtimetate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
       #{endtime,jdbcType=TIME}, #{status,jdbcType=VARCHAR}, #{createat,jdbcType=TIMESTAMP}, 
       #{modifiedat,jdbcType=TIMESTAMP})
   </insert>
@@ -122,14 +122,14 @@
       <if test="uUsername != null">
         u_username,
       </if>
-      <if test="overtimedate != null">
-        overtimedate,
+      <if test="overtimetate != null">
+        overTimeTate,
       </if>
       <if test="starttime != null">
-        starttime,
+        startTime,
       </if>
       <if test="endtime != null">
-        endtime,
+        endTime,
       </if>
       <if test="status != null">
         status,
@@ -145,8 +145,8 @@
       <if test="uUsername != null">
         #{uUsername,jdbcType=VARCHAR},
       </if>
-      <if test="overtimedate != null">
-        #{overtimedate,jdbcType=DATE},
+      <if test="overtimetate != null">
+        #{overtimetate,jdbcType=DATE},
       </if>
       <if test="starttime != null">
         #{starttime,jdbcType=TIME},
@@ -180,14 +180,14 @@
       <if test="record.uUsername != null">
         u_username = #{record.uUsername,jdbcType=VARCHAR},
       </if>
-      <if test="record.overtimedate != null">
-        overtimedate = #{record.overtimedate,jdbcType=DATE},
+      <if test="record.overtimetate != null">
+        overTimeTate = #{record.overtimetate,jdbcType=DATE},
       </if>
       <if test="record.starttime != null">
-        starttime = #{record.starttime,jdbcType=TIME},
+        startTime = #{record.starttime,jdbcType=TIME},
       </if>
       <if test="record.endtime != null">
-        endtime = #{record.endtime,jdbcType=TIME},
+        endTime = #{record.endtime,jdbcType=TIME},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
@@ -207,9 +207,9 @@
     update overtime
     set id = #{record.id,jdbcType=BIGINT},
       u_username = #{record.uUsername,jdbcType=VARCHAR},
-      overtimedate = #{record.overtimedate,jdbcType=DATE},
-      starttime = #{record.starttime,jdbcType=TIME},
-      endtime = #{record.endtime,jdbcType=TIME},
+      overTimeTate = #{record.overtimetate,jdbcType=DATE},
+      startTime = #{record.starttime,jdbcType=TIME},
+      endTime = #{record.endtime,jdbcType=TIME},
       status = #{record.status,jdbcType=VARCHAR},
       createAt = #{record.createat,jdbcType=TIMESTAMP},
       modifiedAt = #{record.modifiedat,jdbcType=TIMESTAMP}
@@ -223,14 +223,14 @@
       <if test="uUsername != null">
         u_username = #{uUsername,jdbcType=VARCHAR},
       </if>
-      <if test="overtimedate != null">
-        overtimedate = #{overtimedate,jdbcType=DATE},
+      <if test="overtimetate != null">
+        overTimeTate = #{overtimetate,jdbcType=DATE},
       </if>
       <if test="starttime != null">
-        starttime = #{starttime,jdbcType=TIME},
+        startTime = #{starttime,jdbcType=TIME},
       </if>
       <if test="endtime != null">
-        endtime = #{endtime,jdbcType=TIME},
+        endTime = #{endtime,jdbcType=TIME},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
@@ -247,9 +247,9 @@
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Overtime">
     update overtime
     set u_username = #{uUsername,jdbcType=VARCHAR},
-      overtimedate = #{overtimedate,jdbcType=DATE},
-      starttime = #{starttime,jdbcType=TIME},
-      endtime = #{endtime,jdbcType=TIME},
+      overTimeTate = #{overtimetate,jdbcType=DATE},
+      startTime = #{starttime,jdbcType=TIME},
+      endTime = #{endtime,jdbcType=TIME},
       status = #{status,jdbcType=VARCHAR},
       createAt = #{createat,jdbcType=TIMESTAMP},
       modifiedAt = #{modifiedat,jdbcType=TIMESTAMP}

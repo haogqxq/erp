@@ -13,8 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 后台资源管理Service实现类
- * Created by macro on 2020/2/2.
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/8/28 20:26
+ * @description：资源Service实现类
  */
 @Service
 public class ResourceServiceImpl implements ResourceService {

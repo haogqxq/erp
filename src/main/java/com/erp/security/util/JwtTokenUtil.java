@@ -23,8 +23,6 @@ import java.util.Map;
  * signature的生成算法：
  * @author ：haoguoqiang
  * @date ：Created in 2020/8/30 20:12
- * @description：
- * @modified By：
  */
 @Slf4j
 public class JwtTokenUtil {

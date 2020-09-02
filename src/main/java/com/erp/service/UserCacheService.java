@@ -6,9 +6,9 @@ import com.erp.mbg.model.Resource;
 import java.util.List;
 
 /**
- * 后台用户缓存操作类
  * @author ：haoguoqiang
  * @date ：Created in 2020/8/30 20:12
+ * @description：用户缓存Service
  */
 public interface UserCacheService {
     /**

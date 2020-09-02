@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用于配置白名单资源路径
- * Created by macro on 2018/11/5.
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/9/1 12:54
+ * @description：用于配置白名单资源路径
  */
 @Getter
 @Setter

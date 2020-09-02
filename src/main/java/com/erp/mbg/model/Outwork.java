@@ -7,7 +7,7 @@ import java.util.Date;
 public class Outwork implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "工号")
+    @ApiModelProperty(value = "用户名")
     private String uUsername;
 
     @ApiModelProperty(value = "外勤日期")
@@ -20,7 +20,7 @@ public class Outwork implements Serializable {
     private Date endtime;
 
     @ApiModelProperty(value = "审批状态")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "申请时间")
     private Date createat;
@@ -70,11 +70,11 @@ public class Outwork implements Serializable {
         this.endtime = endtime;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

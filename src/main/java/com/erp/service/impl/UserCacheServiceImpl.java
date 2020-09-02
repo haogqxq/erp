@@ -20,8 +20,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * UserCacheService实现类
- * Created by macro on 2020/3/13.
+ * @author ：haoguoqiang
+ * @date ：Created in 2020/8/28 20:26
+ * @description：资源Service实现类
  */
 @Service
 public class UserCacheServiceImpl implements UserCacheService {

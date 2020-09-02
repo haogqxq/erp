@@ -9,7 +9,8 @@ import java.util.List;
 
 /**
  * @author ：haoguoqiang
- * @date ：Created in 2020/8/30 20:12
+ * @date ：Created in 2020/8/28 20:40
+ * @description：用户Service
  */
 public interface UserService {
     /**

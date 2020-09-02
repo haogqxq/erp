@@ -5,9 +5,9 @@ import com.erp.mbg.model.Resource;
 import java.util.List;
 
 /**
- * 后台资源管理Service
  * @author ：haoguoqiang
  * @date ：Created in 2020/8/30 20:12
+ * description：后台资源管理Service
  */
 public interface ResourceService {
     /**

@@ -2,23 +2,22 @@ package com.erp.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 public class Attendance implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "工号")
+    @ApiModelProperty(value = "用户名")
     private String uUsername;
 
     @ApiModelProperty(value = "上班日期")
     private Date dutydate;
 
     @ApiModelProperty(value = "上班时间")
-    private Time starttime;
+    private Date starttime;
 
     @ApiModelProperty(value = "下班时间")
-    private Time endtime;
+    private Date endtime;
 
     private static final long serialVersionUID = 1L;
 
@@ -50,7 +49,7 @@ public class Attendance implements Serializable {
         return starttime;
     }
 
-    public void setStarttime(Time starttime) {
+    public void setStarttime(Date starttime) {
         this.starttime = starttime;
     }
 
@@ -58,7 +57,7 @@ public class Attendance implements Serializable {
         return endtime;
     }
 
-    public void setEndtime(Time endtime) {
+    public void setEndtime(Date endtime) {
         this.endtime = endtime;
     }
 

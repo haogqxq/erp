@@ -3,8 +3,8 @@
 <mapper namespace="com.erp.mbg.mapper.PositionMapper">
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Position">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="positionid" jdbcType="INTEGER" property="positionid" />
-    <result column="positionname" jdbcType="VARCHAR" property="positionname" />
+    <result column="positionId" jdbcType="INTEGER" property="positionid" />
+    <result column="positionName" jdbcType="VARCHAR" property="positionname" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, positionid, positionname
+    id, positionId, positionName
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.PositionExample" resultMap="BaseResultMap">
     select
@@ -101,7 +101,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into position (positionid, positionname)
+    insert into position (positionId, positionName)
     values (#{positionid,jdbcType=INTEGER}, #{positionname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.erp.mbg.model.Position">
@@ -111,10 +111,10 @@
     insert into position
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="positionid != null">
-        positionid,
+        positionId,
       </if>
       <if test="positionname != null">
-        positionname,
+        positionName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -139,10 +139,10 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.positionid != null">
-        positionid = #{record.positionid,jdbcType=INTEGER},
+        positionId = #{record.positionid,jdbcType=INTEGER},
       </if>
       <if test="record.positionname != null">
-        positionname = #{record.positionname,jdbcType=VARCHAR},
+        positionName = #{record.positionname,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,8 +152,8 @@
   <update id="updateByExample" parameterType="map">
     update position
     set id = #{record.id,jdbcType=BIGINT},
-      positionid = #{record.positionid,jdbcType=INTEGER},
-      positionname = #{record.positionname,jdbcType=VARCHAR}
+      positionId = #{record.positionid,jdbcType=INTEGER},
+      positionName = #{record.positionname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -162,18 +162,18 @@
     update position
     <set>
       <if test="positionid != null">
-        positionid = #{positionid,jdbcType=INTEGER},
+        positionId = #{positionid,jdbcType=INTEGER},
       </if>
       <if test="positionname != null">
-        positionname = #{positionname,jdbcType=VARCHAR},
+        positionName = #{positionname,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Position">
     update position
-    set positionid = #{positionid,jdbcType=INTEGER},
-      positionname = #{positionname,jdbcType=VARCHAR}
+    set positionId = #{positionid,jdbcType=INTEGER},
+      positionName = #{positionname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
