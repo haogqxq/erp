@@ -1,7 +1,7 @@
 package com.erp.service;
 
-import com.erp.dto.LeaveQueryParem;
-import com.erp.mbg.model.Leave;
+import com.erp.dto.LeaveQueryParam;
+import com.erp.mbg.model.Leavelist;
 
 import java.util.Date;
 import java.util.List;
@@ -15,20 +15,20 @@ public interface LeaveService {
     /**
      * 查询指定日期范围的指定用户的请假记录
      */
-    List<Leave> getLeavesByLeaveQueryParem(LeaveQueryParem leaveQueryParem);
+    List<Leavelist> getLeavesByLeaveQueryParam(LeaveQueryParam leaveQueryParem);
     /**
      * 插入一条请假记录
-     * @param leave
+     * @param leavelist
      * @return
      */
-    int insertLeave(Leave leave);
+    int insertLeave(Leavelist leavelist);
 
     /**
      * 更新一条请假记录
-     * @param leave
+     * @param leavelist
      * @return
      */
-    int updateLeave(Leave leave);
+    int updateLeave(Leavelist leavelist);
 
     /**
      * 删除一条请假记录

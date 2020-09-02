@@ -2,9 +2,10 @@ package com.erp.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
-public class Leave implements Serializable {
+public class Leavelist implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "用户名")
@@ -20,10 +21,10 @@ public class Leave implements Serializable {
     private Date leavedate;
 
     @ApiModelProperty(value = "外出开始时间")
-    private Date starttime;
+    private Time starttime;
 
     @ApiModelProperty(value = "外出结束时间")
-    private Date endtime;
+    private Time endtime;
 
     @ApiModelProperty(value = "审批状态")
     private String status;
@@ -76,19 +77,19 @@ public class Leave implements Serializable {
         this.leavedate = leavedate;
     }
 
-    public Date getStarttime() {
+    public Time getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Date starttime) {
+    public void setStarttime(Time starttime) {
         this.starttime = starttime;
     }
 
-    public Date getEndtime() {
+    public Time getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Date endtime) {
+    public void setEndtime(Time endtime) {
         this.endtime = endtime;
     }
 

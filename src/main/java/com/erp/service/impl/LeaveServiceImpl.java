@@ -1,10 +1,10 @@
 package com.erp.service.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.erp.dto.LeaveQueryParem;
-import com.erp.mbg.mapper.LeaveMapper;
-import com.erp.mbg.model.Leave;
-import com.erp.mbg.model.LeaveExample;
+import com.erp.dto.LeaveQueryParam;
+import com.erp.mbg.mapper.LeavelistMapper;
+import com.erp.mbg.model.Leavelist;
+import com.erp.mbg.model.LeavelistExample;
 import com.erp.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,13 @@ import java.util.List;
 @Service
 public class LeaveServiceImpl implements LeaveService {
     @Autowired
-    private LeaveMapper leaveMapper;
+    private LeavelistMapper leavelistMapper;
     @Override
-    public List<Leave> getLeavesByLeaveQueryParem(LeaveQueryParem leaveQueryParem) {
-        LeaveExample leaveExample = new LeaveExample();
-        LeaveExample.Criteria criteria = leaveExample.createCriteria();
-        if (!StrUtil.isBlank(leaveQueryParem.getUUsername())){
-            criteria.andUUsernameEqualTo(leaveQueryParem.getUUsername());
+    public List<Leavelist> getLeavesByLeaveQueryParam(LeaveQueryParam leaveQueryParem) {
+        LeavelistExample leaveExample = new LeavelistExample();
+        LeavelistExample.Criteria criteria = leaveExample.createCriteria();
+        if (!StrUtil.isBlank(leaveQueryParem.getUsername())){
+            criteria.andUUsernameEqualTo(leaveQueryParem.getUsername());
         }
         if (!StrUtil.isBlank(leaveQueryParem.getReason())){
             criteria.andReasonEqualTo(leaveQueryParem.getReason());
@@ -34,10 +34,9 @@ public class LeaveServiceImpl implements LeaveService {
         if (!StrUtil.isBlank(leaveQueryParem.getStatus())){
             criteria.andStatusEqualTo(leaveQueryParem.getStatus());
         }
-        criteria.andUUsernameEqualTo(leaveQueryParem.getUUsername())
-        .andLeavedateBetween(leaveQueryParem.getLeaveStartDate(),
+        criteria.andLeavedateBetween(leaveQueryParem.getLeaveStartDate(),
                 leaveQueryParem.getLeaveEndDate());
-        List<Leave> leaves = leaveMapper.selectByExample(leaveExample);
+        List<Leavelist> leaves = leavelistMapper.selectByExample(leaveExample);
         if (leaves!=null&&leaves.size()>0){
             return leaves;
         }
@@ -45,29 +44,36 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public int insertLeave(Leave leave) {
-        int count = leaveMapper.insert(leave);
+    public int insertLeave(Leavelist leavelist) {
+        int count = leavelistMapper.insert(leavelist);
         return count;
     }
 
     @Override
-    public int updateLeave(Leave leave) {
-        LeaveExample leaveExample = new LeaveExample();
+    public int updateLeave(Leavelist leavelist) {
+        LeavelistExample leaveExample = new LeavelistExample();
         leaveExample.createCriteria()
-                .andUUsernameEqualTo(leave.getuUsername())
-                .andLeavedateEqualTo(leave.getLeavedate())
-                .andReasonEqualTo(leave.getReason());
-        int count = leaveMapper.updateByExample(leave,leaveExample);
+                .andUUsernameEqualTo(leavelist.getuUsername())
+                .andLeavedateEqualTo(leavelist.getLeavedate())
+                .andReasonEqualTo(leavelist.getReason());
+        List<Leavelist> rawLeaveLists = leavelistMapper.selectByExample(leaveExample);
+        int count = 0;
+        if (rawLeaveLists!=null&&rawLeaveLists.size()>0) {
+            leavelist.setId(rawLeaveLists.get(0).getId());
+            leavelist.setModifiedat(new Date());
+            leavelist.setCreateat(rawLeaveLists.get(0).getCreateat());
+            count = leavelistMapper.updateByExample(leavelist, leaveExample);
+        }
         return count;
     }
 
     @Override
     public int deleteLeave(String username, Date date) {
-        LeaveExample leaveExample = new LeaveExample();
+        LeavelistExample leaveExample = new LeavelistExample();
         leaveExample.createCriteria()
                 .andUUsernameEqualTo(username)
                 .andLeavedateEqualTo(date);
-        int count = leaveMapper.deleteByExample(leaveExample);
+        int count = leavelistMapper.deleteByExample(leaveExample);
         return count;
     }
 }

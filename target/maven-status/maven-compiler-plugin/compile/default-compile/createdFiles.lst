@@ -1,5 +1,4 @@
 com\erp\config\SwaggerProperties$SwaggerPropertiesBuilder.class
-com\erp\mbg\model\LeaveExample.class
 com\erp\mbg\model\User.class
 com\erp\bo\UserDetail.class
 com\erp\common\exception\ParamException.class
@@ -47,9 +46,9 @@ com\erp\mbg\model\UserLoginLogExample$Criterion.class
 com\erp\service\UserService.class
 com\erp\dto\AttendanceParam.class
 com\erp\mbg\mapper\UserInfoMapper.class
+com\erp\dto\LeaveUpdateParam.class
 com\erp\mbg\model\UserInfoExample$Criterion.class
 com\erp\mbg\model\UserLoginLogExample.class
-com\erp\mbg\model\LeaveExample$GeneratedCriteria.class
 com\erp\mbg\mapper\PermissionMapper.class
 com\erp\security\component\JwtAuthenticationTokenFilter.class
 com\erp\security\config\IgnoreUrlsConfig.class
@@ -81,12 +80,12 @@ com\erp\security\util\JwtTokenUtil.class
 com\erp\mbg\mapper\AttendanceMapper.class
 com\erp\mbg\model\HolidayExample$GeneratedCriteria.class
 com\erp\mbg\model\RolePermissionRelationExample.class
+com\erp\dto\LeaveQueryParam.class
 com\erp\mbg\model\OutworkExample.class
 com\erp\mbg\model\Role.class
 com\erp\security\component\RestAuthenticationEntryPoint.class
 com\erp\mbg\model\AttendanceExample.class
 com\erp\mbg\mapper\UserRoleRelationMapper.class
-com\erp\mbg\model\LeaveExample$Criterion.class
 com\erp\mbg\model\PositionExample.class
 com\erp\dto\HolidayParam.class
 com\erp\mbg\model\Attendance.class
@@ -121,7 +120,6 @@ com\erp\dto\UserParam.class
 com\erp\mbg\model\ReasonExample$GeneratedCriteria.class
 com\erp\mbg\model\RoleResourceRelationExample$GeneratedCriteria.class
 com\erp\common\api\CommonResult.class
-com\erp\mbg\model\LeaveExample$Criteria.class
 com\erp\mbg\model\AttendanceExample$Criterion.class
 com\erp\mbg\model\RolePermissionRelation.class
 com\erp\mbg\model\UserExample$Criterion.class
@@ -129,8 +127,6 @@ com\erp\config\SwaggerProperties.class
 com\erp\mbg\model\HolidayExample$Criterion.class
 com\erp\mbg\model\RolePermissionRelationExample$Criterion.class
 com\erp\security\component\DynamicSecurityMetadataSource.class
-com\erp\mbg\model\Leave.class
-com\erp\mbg\mapper\LeaveMapper.class
 com\erp\mbg\mapper\StatusMapper.class
 com\erp\mbg\model\UserExample.class
 com\erp\mbg\model\Holiday.class

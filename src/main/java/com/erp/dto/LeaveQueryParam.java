@@ -12,9 +12,9 @@ import java.util.Date;
  * @description：请假管理参数类
  */
 @Data
-public class LeaveQueryParem {
+public class LeaveQueryParam {
     @ApiModelProperty(value = "用户名")
-    private String uUsername;
+    private String username;
 
     @ApiModelProperty(value = "请假事由")
     private String reason;
