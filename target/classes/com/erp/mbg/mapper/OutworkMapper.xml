@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mbg.mapper.OutworkMapper">
+  <resultMap id="BaseResultMap" type="com.erp.mbg.model.Outwork">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+    <result column="outworkdate" jdbcType="DATE" property="outworkdate" />
+    <result column="starttime" jdbcType="TIME" property="starttime" />
+    <result column="endtime" jdbcType="TIME" property="endtime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
+    <result column="modifiedAt" jdbcType="TIMESTAMP" property="modifiedat" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, u_username, outworkdate, starttime, endtime, status, createAt, modifiedAt
+  </sql>
+  <select id="selectByExample" parameterType="com.erp.mbg.model.OutworkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from outwork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from outwork
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from outwork
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.erp.mbg.model.OutworkExample">
+    delete from outwork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.erp.mbg.model.Outwork">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into outwork (u_username, outworkdate, starttime, 
+      endtime, status, createAt, 
+      modifiedAt)
+    values (#{uUsername,jdbcType=VARCHAR}, #{outworkdate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
+      #{endtime,jdbcType=TIME}, #{status,jdbcType=INTEGER}, #{createat,jdbcType=TIMESTAMP}, 
+      #{modifiedat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.erp.mbg.model.Outwork">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into outwork
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uUsername != null">
+        u_username,
+      </if>
+      <if test="outworkdate != null">
+        outworkdate,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createat != null">
+        createAt,
+      </if>
+      <if test="modifiedat != null">
+        modifiedAt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uUsername != null">
+        #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="outworkdate != null">
+        #{outworkdate,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIME},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIME},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createat != null">
+        #{createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedat != null">
+        #{modifiedat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.erp.mbg.model.OutworkExample" resultType="java.lang.Integer">
+    select count(*) from outwork
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update outwork
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.uUsername != null">
+        u_username = #{record.uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outworkdate != null">
+        outworkdate = #{record.outworkdate,jdbcType=DATE},
+      </if>
+      <if test="record.starttime != null">
+        starttime = #{record.starttime,jdbcType=TIME},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=TIME},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createat != null">
+        createAt = #{record.createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifiedat != null">
+        modifiedAt = #{record.modifiedat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update outwork
+    set id = #{record.id,jdbcType=BIGINT},
+      u_username = #{record.uUsername,jdbcType=VARCHAR},
+      outworkdate = #{record.outworkdate,jdbcType=DATE},
+      starttime = #{record.starttime,jdbcType=TIME},
+      endtime = #{record.endtime,jdbcType=TIME},
+      status = #{record.status,jdbcType=INTEGER},
+      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      modifiedAt = #{record.modifiedat,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.erp.mbg.model.Outwork">
+    update outwork
+    <set>
+      <if test="uUsername != null">
+        u_username = #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="outworkdate != null">
+        outworkdate = #{outworkdate,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIME},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIME},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createat != null">
+        createAt = #{createat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedat != null">
+        modifiedAt = #{modifiedat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Outwork">
+    update outwork
+    set u_username = #{uUsername,jdbcType=VARCHAR},
+      outworkdate = #{outworkdate,jdbcType=DATE},
+      starttime = #{starttime,jdbcType=TIME},
+      endtime = #{endtime,jdbcType=TIME},
+      status = #{status,jdbcType=INTEGER},
+      createAt = #{createat,jdbcType=TIMESTAMP},
+      modifiedAt = #{modifiedat,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
