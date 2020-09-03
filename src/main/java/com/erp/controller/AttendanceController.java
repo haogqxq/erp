@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +42,7 @@ public class AttendanceController {
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        List<Attendance> attendances =  attendanceService.getAttendanceByObject(attendanceParam);
+        List<Attendance> attendances =  attendanceService.getItems(attendanceParam);
         if (attendances!=null&&attendances.size()>0){
             return CommonResult.success(attendances);
         }
@@ -57,7 +56,7 @@ public class AttendanceController {
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        int count = attendanceService.updateAttendanceByUsername(attendance);
+        int count = attendanceService.update(attendance);
         if (count>0){
             return CommonResult.success("success");
         }

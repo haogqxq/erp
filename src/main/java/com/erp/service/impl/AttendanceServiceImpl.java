@@ -17,8 +17,7 @@ import java.util.List;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/9/1 12:54
- * @description：
- * @modified By：
+ * @description ：考勤记录管理实现类
  */
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -27,12 +26,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Autowired
     private AttendanceImportExcelDAO attendanceImportExcelDAO;
     @Override
-    public List<Attendance> getAttendanceByObject(AttendanceParam attendanceParam) {
-        AttendanceExample attendanceExample = new AttendanceExample();
-        attendanceExample.createCriteria()
-                .andUsernameEqualTo(attendanceParam.getUsername())
-                .andDutydateBetween(attendanceParam.getDutyStartDate(), attendanceParam.getDutyEndDate());
-        List<Attendance> attendances = attendanceMapper.selectByExample(attendanceExample);
+    public List<Attendance> getItems(AttendanceParam attendanceParam) {
+
+        List<Attendance> attendances = attendanceMapper
+                .selectByExample(getExample(attendanceParam.getUsername()
+                        ,attendanceParam.getDutyStartDate()
+                        ,attendanceParam.getDutyEndDate()));
         if (attendances!=null && attendances.size()>0){
             return attendances;
         }
@@ -40,14 +39,21 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public int updateAttendanceByUsername(Attendance attendance) {
-        int count = attendanceMapper.updateByPrimaryKeySelective(attendance);
-        return count;
+    public int update(Attendance attendance) {
+        return attendanceMapper.updateByPrimaryKeySelective(attendance);
     }
 
     @Override
     public int importMonthData(List<AttendanceImportExcel> list) {
-        int count = attendanceImportExcelDAO.insertList(list);
-        return count;
+        return attendanceImportExcelDAO.insertList(list);
+    }
+
+    @Override
+    public AttendanceExample getExample(String username, Date startDate, Date endDate) {
+        AttendanceExample attendanceExample = new AttendanceExample();
+        attendanceExample.createCriteria()
+                .andUsernameEqualTo(username)
+                .andDutydateBetween(startDate, endDate);
+        return attendanceExample;
     }
 }

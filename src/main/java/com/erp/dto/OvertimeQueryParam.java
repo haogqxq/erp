@@ -9,10 +9,10 @@ import java.util.Date;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/9/3
- * @description ：外勤管理参数类
+ * @description ：加班管理参数类
  */
 @Data
-public class OutworkQueryParam {
+public class OvertimeQueryParam {
     @ApiModelProperty(value = "用户名")
     private String username;
 

@@ -38,11 +38,11 @@ public class LeaveUpdateParam {
 
     @ApiModelProperty(value = "外出开始时间")
     @NotNull(message = "请假开始时间不能为空")
-    private Date starttime;
+    private Time starttime;
 
     @ApiModelProperty(value = "外出结束时间")
     @NotNull(message = "请假结束时间不能为空")
-    private Date endtime;
+    private Time endtime;
 
     public Leavelist getLeaveList(){
         Leavelist leavelist = new Leavelist();

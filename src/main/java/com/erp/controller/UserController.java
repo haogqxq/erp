@@ -23,8 +23,7 @@ import java.util.Map;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/8/28 20:26
- * @description：
- * @modified By：
+ * @description ：用户管理控制类
  */
 @Slf4j
 @Controller
@@ -89,7 +88,7 @@ public class UserController {
             return ParamException.getCommonResult(bindingResult);
         }
         int count = userService.update(id, user);
-        if (count>0) return CommonResult.success(count);
-        return CommonResult.failed("用户信息更新失败");
+        if (count>0) return CommonResult.success("success");
+        return CommonResult.failed("failed");
     }
 }

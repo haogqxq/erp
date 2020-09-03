@@ -15,14 +15,14 @@ import java.util.List;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/9/2
- * @description：请假管理Service实现类
+ * @description ：请假管理Service实现类
  */
 @Service
 public class LeaveServiceImpl implements LeaveService {
     @Autowired
     private LeavelistMapper leavelistMapper;
     @Override
-    public List<Leavelist> getLeavesByLeaveQueryParam(LeaveQueryParam leaveQueryParem) {
+    public List<Leavelist> getItems(LeaveQueryParam leaveQueryParem) {
         LeavelistExample leaveExample = new LeavelistExample();
         LeavelistExample.Criteria criteria = leaveExample.createCriteria();
         if (!StrUtil.isBlank(leaveQueryParem.getUsername())){
@@ -34,8 +34,8 @@ public class LeaveServiceImpl implements LeaveService {
         if (!StrUtil.isBlank(leaveQueryParem.getStatus())){
             criteria.andStatusEqualTo(leaveQueryParem.getStatus());
         }
-        criteria.andLeavedateBetween(leaveQueryParem.getLeaveStartDate(),
-                leaveQueryParem.getLeaveEndDate());
+        criteria.andLeavedateBetween(leaveQueryParem.getStartDate(),
+                leaveQueryParem.getEndDate());
         List<Leavelist> leaves = leavelistMapper.selectByExample(leaveExample);
         if (leaves!=null&&leaves.size()>0){
             return leaves;
@@ -44,18 +44,22 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public int insertLeave(Leavelist leavelist) {
-        int count = leavelistMapper.insert(leavelist);
-        return count;
+    public int insert(Leavelist leavelist) {
+        leavelist.setStatus("0");
+        LeavelistExample leaveExample = getExample(leavelist);
+        List<Leavelist> rawLeaveLists = leavelistMapper.selectByExample(leaveExample);
+        int count = 0;
+        if (rawLeaveLists!=null&&rawLeaveLists.size()>0) {
+            return count;
+        }else {
+            count = leavelistMapper.insert(leavelist);
+            return count;
+        }
     }
 
     @Override
-    public int updateLeave(Leavelist leavelist) {
-        LeavelistExample leaveExample = new LeavelistExample();
-        leaveExample.createCriteria()
-                .andUsernameEqualTo(leavelist.getUsername())
-                .andLeavedateEqualTo(leavelist.getLeavedate())
-                .andReasonEqualTo(leavelist.getReason());
+    public int update(Leavelist leavelist) {
+        LeavelistExample leaveExample = getExample(leavelist);
         List<Leavelist> rawLeaveLists = leavelistMapper.selectByExample(leaveExample);
         int count = 0;
         if (rawLeaveLists!=null&&rawLeaveLists.size()>0) {
@@ -68,12 +72,16 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public int deleteLeave(String username, Date date) {
+    public int delete(Leavelist leavelist) {
+        return leavelistMapper.deleteByExample(getExample(leavelist));
+    }
+
+    @Override
+    public LeavelistExample getExample(Leavelist leavelist) {
         LeavelistExample leaveExample = new LeavelistExample();
         leaveExample.createCriteria()
-                .andUsernameEqualTo(username)
-                .andLeavedateEqualTo(date);
-        int count = leavelistMapper.deleteByExample(leaveExample);
-        return count;
+                .andUsernameEqualTo(leavelist.getUsername())
+                .andLeavedateEqualTo(leavelist.getLeavedate());
+        return leaveExample;
     }
 }

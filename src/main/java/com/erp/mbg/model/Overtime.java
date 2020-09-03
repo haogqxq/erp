@@ -11,7 +11,10 @@ public class Overtime implements Serializable {
     private String username;
 
     @ApiModelProperty(value = "加班日期")
-    private Date overtimetate;
+    private Date overtimedate;
+
+    @ApiModelProperty(value = "加班理由")
+    private String info;
 
     @ApiModelProperty(value = "加班开始时间")
     private Date starttime;
@@ -46,12 +49,20 @@ public class Overtime implements Serializable {
         this.username = username;
     }
 
-    public Date getOvertimetate() {
-        return overtimetate;
+    public Date getOvertimedate() {
+        return overtimedate;
     }
 
-    public void setOvertimetate(Date overtimetate) {
-        this.overtimetate = overtimetate;
+    public void setOvertimedate(Date overtimedate) {
+        this.overtimedate = overtimedate;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public Date getStarttime() {
@@ -102,7 +113,8 @@ public class Overtime implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", username=").append(username);
-        sb.append(", overtimetate=").append(overtimetate);
+        sb.append(", overtimedate=").append(overtimedate);
+        sb.append(", info=").append(info);
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);
         sb.append(", status=").append(status);

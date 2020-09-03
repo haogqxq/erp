@@ -2,10 +2,10 @@ package com.erp.controller;
 
 import com.erp.common.api.CommonResult;
 import com.erp.common.exception.ParamException;
-import com.erp.dto.OutworkQueryParam;
-import com.erp.dto.OutworkUpdateParam;
-import com.erp.mbg.model.Outwork;
-import com.erp.service.OutworkService;
+import com.erp.dto.OvertimeQueryParam;
+import com.erp.dto.OvertimeUpdateParam;
+import com.erp.mbg.model.Overtime;
+import com.erp.service.OvertimeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -20,66 +20,67 @@ import java.util.List;
 /**
  * @author ：haoguoqiang
  * @date ：Created in 2020/9/3
- * @description ：外勤管理控制类
+ * @description ：加班管理控制类
  */
-@Controller
 @Slf4j
-@RequestMapping("/outwork")
-@Api(value = "OutworkController")
-public class OutworkController {
+@Controller
+@RequestMapping("/overtime")
+@Api(value = "OvertimeController")
+public class OvertimeController {
     @Autowired
-    private OutworkService outworkService;
-    @ApiOperation(value = "取得外勤记录一览")
+    private OvertimeService overtimeService;
+
     @GetMapping
+    @ApiOperation(value = "取得加班记录一览")
     @ResponseBody
-    public CommonResult<List<Outwork>> getOutworks(@Valid @RequestBody OutworkQueryParam outworkQueryParam
+    public CommonResult<List<Overtime>> getOvertimes(@Valid @RequestBody OvertimeQueryParam overtimeQueryParam
             , BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return ParamException.getCommonResult(bindingResult);
         }
-        List<Outwork> outworks = outworkService.getItems(outworkQueryParam);
-        if (outworks!=null&&outworks.size()>0){
-            return  CommonResult.success(outworks);
+        List<Overtime> overtimes = overtimeService.getItems(overtimeQueryParam);
+        if (overtimes!=null&&overtimes.size()>0){
+            return CommonResult.success(overtimes);
         }
-        return CommonResult.failed("没有对应的外勤记录");
+        return  CommonResult.failed("没有加班记录");
     }
-    @ApiOperation(value = "更新外勤申请记录")
+    @ApiOperation(value = "更新加班申请记录")
     @PutMapping
     @ResponseBody
-    public CommonResult<String> update(@Valid @RequestBody OutworkUpdateParam outworkUpdateParam
+    public CommonResult<String> update(@Valid @RequestBody OvertimeUpdateParam overtimeUpdateParam
             ,BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        int count = outworkService.update(outworkUpdateParam.getOutwork());
+        int count = overtimeService.update(overtimeUpdateParam.getOvertime());
         if (count>0){
             return CommonResult.success("SUCCESS");
         }
         return CommonResult.failed("更新失败");
     }
-    @ApiOperation(value = "登录外勤申请记录")
+    @ApiOperation(value = "登录加班申请记录")
     @PostMapping
     @ResponseBody
-    public CommonResult<String> insert(@Valid @RequestBody OutworkUpdateParam outworkUpdateParam
+    public CommonResult<String> insert(@Valid @RequestBody OvertimeUpdateParam overtimeUpdateParam
             ,BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        int count = outworkService.insert(outworkUpdateParam.getOutwork());
+        int count = overtimeService.insert(overtimeUpdateParam.getOvertime());
         if (count>0){
             return CommonResult.success("SUCCESS");
         }
         return CommonResult.failed("登录失败");
     }
-    @ApiOperation(value = "删除外勤申请记录")
+    @ApiOperation(value = "登录加班申请记录")
     @DeleteMapping
     @ResponseBody
-    public CommonResult<String> delete(@Valid @RequestBody OutworkUpdateParam outworkUpdateParam
+    public CommonResult<String> delete(@Valid @RequestBody OvertimeUpdateParam overtimeUpdateParam
             ,BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        int count = outworkService.delete(outworkUpdateParam.getOutwork());
+        int count = overtimeService.delete(overtimeUpdateParam.getOvertime());
         if (count>0){
             return CommonResult.success("SUCCESS");
         }

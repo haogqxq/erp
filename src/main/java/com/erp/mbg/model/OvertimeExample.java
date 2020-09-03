@@ -288,63 +288,133 @@ public class OvertimeExample {
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateIsNull() {
-            addCriterion("overTimeTate is null");
+        public Criteria andOvertimedateIsNull() {
+            addCriterion("overTimeDate is null");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateIsNotNull() {
-            addCriterion("overTimeTate is not null");
+        public Criteria andOvertimedateIsNotNull() {
+            addCriterion("overTimeDate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateEqualTo(Date value) {
-            addCriterionForJDBCDate("overTimeTate =", value, "overtimetate");
+        public Criteria andOvertimedateEqualTo(Date value) {
+            addCriterionForJDBCDate("overTimeDate =", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("overTimeTate <>", value, "overtimetate");
+        public Criteria andOvertimedateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("overTimeDate <>", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateGreaterThan(Date value) {
-            addCriterionForJDBCDate("overTimeTate >", value, "overtimetate");
+        public Criteria andOvertimedateGreaterThan(Date value) {
+            addCriterionForJDBCDate("overTimeDate >", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("overTimeTate >=", value, "overtimetate");
+        public Criteria andOvertimedateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("overTimeDate >=", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateLessThan(Date value) {
-            addCriterionForJDBCDate("overTimeTate <", value, "overtimetate");
+        public Criteria andOvertimedateLessThan(Date value) {
+            addCriterionForJDBCDate("overTimeDate <", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("overTimeTate <=", value, "overtimetate");
+        public Criteria andOvertimedateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("overTimeDate <=", value, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateIn(List<Date> values) {
-            addCriterionForJDBCDate("overTimeTate in", values, "overtimetate");
+        public Criteria andOvertimedateIn(List<Date> values) {
+            addCriterionForJDBCDate("overTimeDate in", values, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("overTimeTate not in", values, "overtimetate");
+        public Criteria andOvertimedateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("overTimeDate not in", values, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("overTimeTate between", value1, value2, "overtimetate");
+        public Criteria andOvertimedateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("overTimeDate between", value1, value2, "overtimedate");
             return (Criteria) this;
         }
 
-        public Criteria andOvertimetateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("overTimeTate not between", value1, value2, "overtimetate");
+        public Criteria andOvertimedateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("overTimeDate not between", value1, value2, "overtimedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoIsNull() {
+            addCriterion("info is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoIsNotNull() {
+            addCriterion("info is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoEqualTo(String value) {
+            addCriterion("info =", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoNotEqualTo(String value) {
+            addCriterion("info <>", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoGreaterThan(String value) {
+            addCriterion("info >", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoGreaterThanOrEqualTo(String value) {
+            addCriterion("info >=", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoLessThan(String value) {
+            addCriterion("info <", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoLessThanOrEqualTo(String value) {
+            addCriterion("info <=", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoLike(String value) {
+            addCriterion("info like", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoNotLike(String value) {
+            addCriterion("info not like", value, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoIn(List<String> values) {
+            addCriterion("info in", values, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoNotIn(List<String> values) {
+            addCriterion("info not in", values, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoBetween(String value1, String value2) {
+            addCriterion("info between", value1, value2, "info");
+            return (Criteria) this;
+        }
+
+        public Criteria andInfoNotBetween(String value1, String value2) {
+            addCriterion("info not between", value1, value2, "info");
             return (Criteria) this;
         }
 

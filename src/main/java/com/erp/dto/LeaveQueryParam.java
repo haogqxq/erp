@@ -24,10 +24,10 @@ public class LeaveQueryParam {
 
     @ApiModelProperty(value = "查询开始日期")
     @NotNull(message = "开始日期不能为空")
-    private Date leaveStartDate;
+    private Date startDate;
 
     @ApiModelProperty(value = "查询结束日期")
     @NotNull(message = "结束日期不能为空")
-    private Date leaveEndDate;
+    private Date endDate;
 
 }
