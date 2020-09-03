@@ -26,7 +26,7 @@ public class LeaveServiceImpl implements LeaveService {
         LeavelistExample leaveExample = new LeavelistExample();
         LeavelistExample.Criteria criteria = leaveExample.createCriteria();
         if (!StrUtil.isBlank(leaveQueryParem.getUsername())){
-            criteria.andUUsernameEqualTo(leaveQueryParem.getUsername());
+            criteria.andUsernameEqualTo(leaveQueryParem.getUsername());
         }
         if (!StrUtil.isBlank(leaveQueryParem.getReason())){
             criteria.andReasonEqualTo(leaveQueryParem.getReason());
@@ -53,7 +53,7 @@ public class LeaveServiceImpl implements LeaveService {
     public int updateLeave(Leavelist leavelist) {
         LeavelistExample leaveExample = new LeavelistExample();
         leaveExample.createCriteria()
-                .andUUsernameEqualTo(leavelist.getuUsername())
+                .andUsernameEqualTo(leavelist.getUsername())
                 .andLeavedateEqualTo(leavelist.getLeavedate())
                 .andReasonEqualTo(leavelist.getReason());
         List<Leavelist> rawLeaveLists = leavelistMapper.selectByExample(leaveExample);
@@ -71,7 +71,7 @@ public class LeaveServiceImpl implements LeaveService {
     public int deleteLeave(String username, Date date) {
         LeavelistExample leaveExample = new LeavelistExample();
         leaveExample.createCriteria()
-                .andUUsernameEqualTo(username)
+                .andUsernameEqualTo(username)
                 .andLeavedateEqualTo(date);
         int count = leavelistMapper.deleteByExample(leaveExample);
         return count;

@@ -1,7 +1,10 @@
 package com.erp.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.erp.common.api.CommonResult;
+import com.erp.common.excel.AttendanceImportExcelListener;
 import com.erp.common.exception.ParamException;
+import com.erp.dto.AttendanceImportExcel;
 import com.erp.dto.LeaveQueryParam;
 import com.erp.dto.LeaveUpdateParam;
 import com.erp.mbg.model.Leavelist;
@@ -13,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,7 +34,6 @@ import java.util.List;
 public class LeaveController {
     @Autowired
     private LeaveService leaveService;
-
     @ApiOperation(value = "查询请假记录")
     @GetMapping
     @ResponseBody
@@ -41,7 +45,7 @@ public class LeaveController {
         if (leaveLists!=null&&leaveLists.size()>0){
             return CommonResult.success(leaveLists);
         }
-        return CommonResult.failed();
+        return CommonResult.failed("查询请假记录失败");
     }
     @ApiOperation(value = "登录请假记录")
     @PostMapping
@@ -52,7 +56,7 @@ public class LeaveController {
         }
         int count = leaveService.insertLeave(leaveUpdateParam.getLeaveList());
         if (count>0){
-            return CommonResult.success(count);
+            return CommonResult.success("success");
         }
         return CommonResult.failed("请假记录登录失败");
     }
@@ -65,7 +69,7 @@ public class LeaveController {
         }
         int count = leaveService.updateLeave(leaveUpdateParam.getLeaveList());
         if (count>0){
-            return CommonResult.success(count);
+            return CommonResult.success("success");
         }
         return CommonResult.failed("请假记录修改失败");
     }
@@ -79,7 +83,7 @@ public class LeaveController {
         int count = leaveService.deleteLeave(leaveUpdateParam.getUsername()
                 ,leaveUpdateParam.getLeavedate());
         if (count>0){
-            return CommonResult.success(count);
+            return CommonResult.success("success");
         }
         return CommonResult.failed("请假记录修改失败");
     }

@@ -66,7 +66,7 @@ public class HolidayController {
             return ParamException.getCommonResult(bindingResult);
         }
         int count = holidayService.insertHoliday(holidayUpdateParam);
-        if (count>0) return CommonResult.success(count);
+        if (count>0) return CommonResult.success("success");
         return CommonResult.failed("登录失败");
     }
     @ApiOperation(value = "删除节假日")
@@ -78,7 +78,7 @@ public class HolidayController {
             return ParamException.getCommonResult(bindingResult);
         }
         int count = holidayService.deleteHolidayByDate(holidayUpdateParam.getHoliday());
-        if (count>0) return CommonResult.success(count);
+        if (count>0) return CommonResult.success("success");
         return CommonResult.failed("删除失败");
     }
     @ApiOperation(value = "更新节假日")
@@ -90,7 +90,7 @@ public class HolidayController {
             return ParamException.getCommonResult(bindingResult);
         }
         int count = holidayService.updateHolidayByDate(holidayUpdateParam);
-        if (count>0) return CommonResult.success(count);
+        if (count>0) return CommonResult.success("success");
         return CommonResult.failed("更新失败");
     }
 }

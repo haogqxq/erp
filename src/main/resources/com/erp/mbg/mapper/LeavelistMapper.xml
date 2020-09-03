@@ -3,7 +3,7 @@
 <mapper namespace="com.erp.mbg.mapper.LeavelistMapper">
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Leavelist">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="info" jdbcType="VARCHAR" property="info" />
     <result column="leaveDate" jdbcType="DATE" property="leavedate" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_username, reason, info, leaveDate, startTime, endTime, status, createAt, modifiedAt
+    id, username, reason, info, leaveDate, startTime, endTime, status, createAt, modifiedAt
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.LeavelistExample" resultMap="BaseResultMap">
     select
@@ -108,11 +108,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into leavelist (u_username, reason, info, 
+    insert into leavelist (username, reason, info, 
       leaveDate, startTime, endTime, 
       status, createAt, modifiedAt
       )
-    values (#{uUsername,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
+    values (#{username,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
       #{leavedate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, #{endtime,jdbcType=TIME}, 
       #{status,jdbcType=VARCHAR}, #{createat,jdbcType=TIMESTAMP}, #{modifiedat,jdbcType=TIMESTAMP}
       )
@@ -123,8 +123,8 @@
     </selectKey>
     insert into leavelist
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uUsername != null">
-        u_username,
+      <if test="username != null">
+        username,
       </if>
       <if test="reason != null">
         reason,
@@ -152,8 +152,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uUsername != null">
-        #{uUsername,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         #{reason,jdbcType=VARCHAR},
@@ -193,8 +193,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.uUsername != null">
-        u_username = #{record.uUsername,jdbcType=VARCHAR},
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.reason != null">
         reason = #{record.reason,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
   <update id="updateByExample" parameterType="map">
     update leavelist
     set id = #{record.id,jdbcType=BIGINT},
-      u_username = #{record.uUsername,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
       reason = #{record.reason,jdbcType=VARCHAR},
       info = #{record.info,jdbcType=VARCHAR},
       leaveDate = #{record.leavedate,jdbcType=DATE},
@@ -244,8 +244,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.erp.mbg.model.Leavelist">
     update leavelist
     <set>
-      <if test="uUsername != null">
-        u_username = #{uUsername,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         reason = #{reason,jdbcType=VARCHAR},
@@ -276,7 +276,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Leavelist">
     update leavelist
-    set u_username = #{uUsername,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       reason = #{reason,jdbcType=VARCHAR},
       info = #{info,jdbcType=VARCHAR},
       leaveDate = #{leavedate,jdbcType=DATE},

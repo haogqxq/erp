@@ -2,14 +2,13 @@ package com.erp.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 public class Leavelist implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "用户名")
-    private String uUsername;
+    private String username;
 
     @ApiModelProperty(value = "请假事由")
     private String reason;
@@ -21,10 +20,10 @@ public class Leavelist implements Serializable {
     private Date leavedate;
 
     @ApiModelProperty(value = "外出开始时间")
-    private Time starttime;
+    private Date starttime;
 
     @ApiModelProperty(value = "外出结束时间")
-    private Time endtime;
+    private Date endtime;
 
     @ApiModelProperty(value = "审批状态")
     private String status;
@@ -45,12 +44,12 @@ public class Leavelist implements Serializable {
         this.id = id;
     }
 
-    public String getuUsername() {
-        return uUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setuUsername(String uUsername) {
-        this.uUsername = uUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getReason() {
@@ -77,19 +76,19 @@ public class Leavelist implements Serializable {
         this.leavedate = leavedate;
     }
 
-    public Time getStarttime() {
+    public Date getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Time starttime) {
+    public void setStarttime(Date starttime) {
         this.starttime = starttime;
     }
 
-    public Time getEndtime() {
+    public Date getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Time endtime) {
+    public void setEndtime(Date endtime) {
         this.endtime = endtime;
     }
 
@@ -124,7 +123,7 @@ public class Leavelist implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", uUsername=").append(uUsername);
+        sb.append(", username=").append(username);
         sb.append(", reason=").append(reason);
         sb.append(", info=").append(info);
         sb.append(", leavedate=").append(leavedate);

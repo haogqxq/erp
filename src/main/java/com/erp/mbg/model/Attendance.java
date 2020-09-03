@@ -8,7 +8,7 @@ public class Attendance implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "用户名")
-    private String uUsername;
+    private String username;
 
     @ApiModelProperty(value = "上班日期")
     private Date dutydate;
@@ -29,12 +29,12 @@ public class Attendance implements Serializable {
         this.id = id;
     }
 
-    public String getuUsername() {
-        return uUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setuUsername(String uUsername) {
-        this.uUsername = uUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Date getDutydate() {
@@ -68,7 +68,7 @@ public class Attendance implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", uUsername=").append(uUsername);
+        sb.append(", username=").append(username);
         sb.append(", dutydate=").append(dutydate);
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);

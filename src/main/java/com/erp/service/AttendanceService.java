@@ -1,5 +1,6 @@
 package com.erp.service;
 
+import com.erp.dto.AttendanceImportExcel;
 import com.erp.dto.AttendanceParam;
 import com.erp.mbg.model.Attendance;
 
@@ -25,5 +26,5 @@ public interface AttendanceService {
     /**
      * 导入考勤
      */
-    int importMonthData(String filePath);
+    int importMonthData(List<AttendanceImportExcel> list);
 }

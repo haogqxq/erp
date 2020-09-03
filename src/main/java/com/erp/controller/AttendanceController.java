@@ -1,7 +1,10 @@
 package com.erp.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.erp.common.api.CommonResult;
+import com.erp.common.excel.AttendanceImportExcelListener;
 import com.erp.common.exception.ParamException;
+import com.erp.dto.AttendanceImportExcel;
 import com.erp.dto.AttendanceParam;
 import com.erp.mbg.model.Attendance;
 import com.erp.service.AttendanceService;
@@ -13,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -54,8 +59,16 @@ public class AttendanceController {
         }
         int count = attendanceService.updateAttendanceByUsername(attendance);
         if (count>0){
-            return CommonResult.success(count);
+            return CommonResult.success("success");
         }
-        return CommonResult.failed();
+        return CommonResult.failed("修改失败");
+    }
+    @PostMapping("upload")
+    @ResponseBody
+    public CommonResult upload(MultipartFile file) throws IOException {
+        EasyExcel.read(file.getInputStream()
+                , AttendanceImportExcel.class
+                , new AttendanceImportExcelListener(attendanceService)).sheet().doRead();
+        return CommonResult.success("success");
     }
 }
