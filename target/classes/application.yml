@@ -6,6 +6,9 @@ spring:
   data:
     rest:
       base-path: /api
+  http:
+    multipart:
+      location: /data/upload_tmp
 
 mybatis:
   mapper-locations:
@@ -54,3 +57,4 @@ secure:
       - /user/info
       - /user/logout
       - /minio/upload
+      - /**

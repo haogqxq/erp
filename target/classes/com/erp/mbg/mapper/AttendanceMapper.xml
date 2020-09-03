@@ -3,7 +3,7 @@
 <mapper namespace="com.erp.mbg.mapper.AttendanceMapper">
   <resultMap id="BaseResultMap" type="com.erp.mbg.model.Attendance">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="u_username" jdbcType="VARCHAR" property="uUsername" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="dutydate" jdbcType="DATE" property="dutydate" />
     <result column="starttime" jdbcType="TIME" property="starttime" />
     <result column="endtime" jdbcType="TIME" property="endtime" />
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_username, dutydate, starttime, endtime
+    id, username, dutydate, starttime, endtime
   </sql>
   <select id="selectByExample" parameterType="com.erp.mbg.model.AttendanceExample" resultMap="BaseResultMap">
     select
@@ -103,9 +103,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into attendance (u_username, dutydate, starttime, 
+    insert into attendance (username, dutydate, starttime, 
       endtime)
-    values (#{uUsername,jdbcType=VARCHAR}, #{dutydate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
+    values (#{username,jdbcType=VARCHAR}, #{dutydate,jdbcType=DATE}, #{starttime,jdbcType=TIME}, 
       #{endtime,jdbcType=TIME})
   </insert>
   <insert id="insertSelective" parameterType="com.erp.mbg.model.Attendance">
@@ -114,8 +114,8 @@
     </selectKey>
     insert into attendance
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uUsername != null">
-        u_username,
+      <if test="username != null">
+        username,
       </if>
       <if test="dutydate != null">
         dutydate,
@@ -128,8 +128,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uUsername != null">
-        #{uUsername,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="dutydate != null">
         #{dutydate,jdbcType=DATE},
@@ -154,8 +154,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.uUsername != null">
-        u_username = #{record.uUsername,jdbcType=VARCHAR},
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.dutydate != null">
         dutydate = #{record.dutydate,jdbcType=DATE},
@@ -174,7 +174,7 @@
   <update id="updateByExample" parameterType="map">
     update attendance
     set id = #{record.id,jdbcType=BIGINT},
-      u_username = #{record.uUsername,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
       dutydate = #{record.dutydate,jdbcType=DATE},
       starttime = #{record.starttime,jdbcType=TIME},
       endtime = #{record.endtime,jdbcType=TIME}
@@ -185,8 +185,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.erp.mbg.model.Attendance">
     update attendance
     <set>
-      <if test="uUsername != null">
-        u_username = #{uUsername,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="dutydate != null">
         dutydate = #{dutydate,jdbcType=DATE},
@@ -202,7 +202,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.erp.mbg.model.Attendance">
     update attendance
-    set u_username = #{uUsername,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       dutydate = #{dutydate,jdbcType=DATE},
       starttime = #{starttime,jdbcType=TIME},
       endtime = #{endtime,jdbcType=TIME}
