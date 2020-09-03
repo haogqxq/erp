@@ -10,6 +10,9 @@ public class Outwork implements Serializable {
     @ApiModelProperty(value = "用户名")
     private String username;
 
+    @ApiModelProperty(value = "外勤理由")
+    private String reason;
+
     @ApiModelProperty(value = "外勤日期")
     private Date outworkdate;
 
@@ -44,6 +47,14 @@ public class Outwork implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public Date getOutworkdate() {
@@ -102,6 +113,7 @@ public class Outwork implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", username=").append(username);
+        sb.append(", reason=").append(reason);
         sb.append(", outworkdate=").append(outworkdate);
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);
