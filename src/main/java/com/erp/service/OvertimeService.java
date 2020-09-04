@@ -17,19 +17,19 @@ import java.util.List;
 public interface OvertimeService {
     List<Overtime> getItems(OvertimeQueryParam overtimeQueryParam);
     /**
-     * 插入一条外勤记录
+     * 插入一条加班记录
      */
     int insert(Overtime overtime);
 
     /**
-     * 更新一条外勤记录
+     * 更新一条加班记录
      */
     int update(Overtime overtime);
 
     /**
-     * 删除一条外勤记录
+     * 取消加班申请
      */
-    int delete(Overtime overtime);
+    int cancel(Overtime overtime);
 
     OvertimeExample getExample(Overtime overtime);
 }

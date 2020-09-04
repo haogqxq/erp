@@ -72,7 +72,7 @@ public class OvertimeController {
         }
         return CommonResult.failed("登录失败");
     }
-    @ApiOperation(value = "登录加班申请记录")
+    @ApiOperation(value = "取消加班申请")
     @DeleteMapping
     @ResponseBody
     public CommonResult<String> delete(@Valid @RequestBody OvertimeUpdateParam overtimeUpdateParam
@@ -80,7 +80,7 @@ public class OvertimeController {
         if (bindingResult.hasErrors()) {
             return ParamException.getCommonResult(bindingResult);
         }
-        int count = overtimeService.delete(overtimeUpdateParam.getOvertime());
+        int count = overtimeService.cancel(overtimeUpdateParam.getOvertime());
         if (count>0){
             return CommonResult.success("SUCCESS");
         }

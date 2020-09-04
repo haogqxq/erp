@@ -1,4 +1,4 @@
-package com.erp.common.service;
+package com.erp.common.redis;
 
 import java.util.List;
 import java.util.Map;

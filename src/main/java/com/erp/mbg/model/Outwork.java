@@ -22,6 +22,9 @@ public class Outwork implements Serializable {
     @ApiModelProperty(value = "外勤结束时间")
     private Date endtime;
 
+    @ApiModelProperty(value = "取消标志：0->未取消 1->已取消")
+    private Boolean cancelflag;
+
     @ApiModelProperty(value = "审批状态")
     private String status;
 
@@ -81,6 +84,14 @@ public class Outwork implements Serializable {
         this.endtime = endtime;
     }
 
+    public Boolean getCancelflag() {
+        return cancelflag;
+    }
+
+    public void setCancelflag(Boolean cancelflag) {
+        this.cancelflag = cancelflag;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -117,6 +128,7 @@ public class Outwork implements Serializable {
         sb.append(", outworkdate=").append(outworkdate);
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);
+        sb.append(", cancelflag=").append(cancelflag);
         sb.append(", status=").append(status);
         sb.append(", createat=").append(createat);
         sb.append(", modifiedat=").append(modifiedat);

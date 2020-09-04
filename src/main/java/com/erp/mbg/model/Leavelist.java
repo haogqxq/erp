@@ -28,6 +28,9 @@ public class Leavelist implements Serializable {
     @ApiModelProperty(value = "审批状态")
     private String status;
 
+    @ApiModelProperty(value = "取消标志：0->未取消 1->已取消")
+    private Boolean cancelflag;
+
     @ApiModelProperty(value = "申请时间")
     private Date createat;
 
@@ -100,6 +103,14 @@ public class Leavelist implements Serializable {
         this.status = status;
     }
 
+    public Boolean getCancelflag() {
+        return cancelflag;
+    }
+
+    public void setCancelflag(Boolean cancelflag) {
+        this.cancelflag = cancelflag;
+    }
+
     public Date getCreateat() {
         return createat;
     }
@@ -130,6 +141,7 @@ public class Leavelist implements Serializable {
         sb.append(", starttime=").append(starttime);
         sb.append(", endtime=").append(endtime);
         sb.append(", status=").append(status);
+        sb.append(", cancelflag=").append(cancelflag);
         sb.append(", createat=").append(createat);
         sb.append(", modifiedat=").append(modifiedat);
         sb.append(", serialVersionUID=").append(serialVersionUID);

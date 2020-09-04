@@ -1,6 +1,6 @@
-package com.erp.common.service.impl;
+package com.erp.common.redis.impl;
 
-import com.erp.common.service.RedisService;
+import com.erp.common.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

@@ -72,8 +72,15 @@ public class OvertimeServiceImpl implements OvertimeService {
     }
 
     @Override
-    public int delete(Overtime overtime) {
-        return overtimeMapper.deleteByExample(getExample(overtime));
+    public int cancel(Overtime overtime) {
+        OvertimeExample overtimeExample = getExample(overtime);
+        List<Overtime> rawOvertimes = overtimeMapper.selectByExample(overtimeExample);
+        int count = 0;
+        if (rawOvertimes!=null&&rawOvertimes.size()>0){
+            rawOvertimes.get(0).setCancelflag(true);
+            count = overtimeMapper.updateByExample(rawOvertimes.get(0), overtimeExample);
+        }
+        return count;
     }
 
     @Override
@@ -81,6 +88,7 @@ public class OvertimeServiceImpl implements OvertimeService {
         OvertimeExample overtimeExample = new OvertimeExample();
         overtimeExample.createCriteria()
                 .andUsernameEqualTo(overtime.getUsername())
+                .andCancelflagEqualTo(overtime.getCancelflag())
                 .andOvertimedateEqualTo(overtime.getOvertimedate());
         return overtimeExample;
     }

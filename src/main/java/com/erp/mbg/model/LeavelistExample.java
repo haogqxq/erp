@@ -678,6 +678,66 @@ public class LeavelistExample {
             return (Criteria) this;
         }
 
+        public Criteria andCancelflagIsNull() {
+            addCriterion("cancelFlag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagIsNotNull() {
+            addCriterion("cancelFlag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagEqualTo(Boolean value) {
+            addCriterion("cancelFlag =", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagNotEqualTo(Boolean value) {
+            addCriterion("cancelFlag <>", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagGreaterThan(Boolean value) {
+            addCriterion("cancelFlag >", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("cancelFlag >=", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagLessThan(Boolean value) {
+            addCriterion("cancelFlag <", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagLessThanOrEqualTo(Boolean value) {
+            addCriterion("cancelFlag <=", value, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagIn(List<Boolean> values) {
+            addCriterion("cancelFlag in", values, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagNotIn(List<Boolean> values) {
+            addCriterion("cancelFlag not in", values, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagBetween(Boolean value1, Boolean value2) {
+            addCriterion("cancelFlag between", value1, value2, "cancelflag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCancelflagNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("cancelFlag not between", value1, value2, "cancelflag");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateatIsNull() {
             addCriterion("createAt is null");
             return (Criteria) this;
