@@ -10,6 +10,9 @@ spring:
     multipart:
       location: /data/upload_tmp
 
+  thymeleaf:
+    cache: false
+
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml
