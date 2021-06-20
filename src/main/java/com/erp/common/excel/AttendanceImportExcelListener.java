@@ -55,6 +55,7 @@ public class AttendanceImportExcelListener extends AnalysisEventListener<Attenda
             // 存储完成清理 list
             list.clear();
         }
+        log.info("解析到一条数据:{}", JSON.toJSONString(data));
     }
 
     /**
