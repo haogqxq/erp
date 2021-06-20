@@ -91,4 +91,16 @@ public class UserController {
         if (count>0) return CommonResult.success("success");
         return CommonResult.failed("failed");
     }
+    
+    @ApiOperation(value = "修改指定用户信息")
+    @PostMapping(value = "/update/{id}")
+    @ResponseBody
+    public CommonResult update2(@PathVariable Long id,@Valid @RequestBody User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
+        int count = userService.update(id, user);
+        if (count>0) return CommonResult.success("success");
+        return CommonResult.failed("failed");
+    }
 }

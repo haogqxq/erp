@@ -93,4 +93,16 @@ public class HolidayController {
         if (count>0) return CommonResult.success("success");
         return CommonResult.failed("更新失败");
     }
+    @ApiOperation(value = "更新节假日")
+    @PutMapping
+    @ResponseBody
+    public CommonResult updateHoliday2(@Valid @RequestBody HolidayUpdateParam holidayUpdateParam
+            , BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
+        int count = holidayService.updateHolidayByDate(holidayUpdateParam);
+        if (count>0) return CommonResult.success("success");
+        return CommonResult.failed("更新失败");
+    }
 }
