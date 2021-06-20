@@ -81,4 +81,18 @@ public class LeaveController {
         }
         return CommonResult.failed("请假记录修改失败");
     }
+    
+    @ApiOperation(value = "修改请假记录")
+    @DeleteMapping
+    @ResponseBody
+    public CommonResult<String> deleteLeave2(@Valid @RequestBody LeaveUpdateParam leaveUpdateParam, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ParamException.getCommonResult(bindingResult);
+        }
+        int count = leaveService.delete(leaveUpdateParam.getLeaveList());
+        if (count>0){
+            return CommonResult.success("success");
+        }
+        return CommonResult.failed("请假记录修改失败");
+    }
 }
