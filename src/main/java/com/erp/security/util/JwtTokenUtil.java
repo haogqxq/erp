@@ -105,6 +105,15 @@ public class JwtTokenUtil {
         return  generateToken(claims);
     }
     /**
+     * 根据用户信息生成Token
+     */
+    public String generateToken2(UserDetails userDetails){
+        Map<String,Object> claims = new HashMap<>();
+        claims.put(CLAIM_KEY_CREATED, new Date());
+        claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+        return  generateToken(claims);
+    }
+    /**
      * 当原来的token没过期时是可以刷新的
      *
      * @param oldToken 带tokenHead的token
